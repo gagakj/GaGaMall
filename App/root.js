@@ -16,7 +16,6 @@ class rootApp extends React.Component {
        super(props);
        this.renderScene = this.renderScene.bind(this);
     }
-
   renderScene(route, navigator) {
     let Component = route.component;
     _navigator = navigator;
