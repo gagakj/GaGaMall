@@ -9,47 +9,74 @@ import {
   Text,
 } from 'react-native';
 
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import GaGaTabBar from '../component/GaGaTabBar';
-
+import {IndicatorViewPager,PagerTabIndicator} from 'rn-viewpager';
 class AppMain extends Component {
     constructor(props) {
         super(props);
         this.state={
-           tabNames:['主页','订单','购物车','我的'],
-           tabIconNames: ['ios-home', 'ios-bookmark', 'ios-cart', 'ios-person']
         };
     }
-    
+    _renderTabIndicator() {
+        let tabs = [{
+                text: '主页',
+                iconSource: require('../imgs/ic_tab_home.png'),
+                selectedIconSource: require('../imgs/ic_tab_home_press.png'),
+            },{
+                text: '订单',
+                iconSource: require('../imgs/ic_tab_order.png'),
+                selectedIconSource: require('../imgs/ic_tab_order_press.png'),
+            },{
+                text: '购物车',
+                iconSource: require('../imgs/ic_tab_cart.png'),
+                selectedIconSource: require('../imgs/ic_tab_cart_press.png'),
+            },{
+                text: '我的',
+                iconSource: require('../imgs/ic_tab_center.png'),
+                selectedIconSource: require('../imgs/ic_tab_center_press.png'),  
+            }
+            ];
+        return <PagerTabIndicator 
+            tabs={tabs} 
+            iconStyle={styles.iconStyle} 
+            selectedIconStyle={styles.iconStyle}
+            textStyle={styles.textStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            />;
+    }
     render() {
-        let tabNames = this.state.tabNames;
-		let tabIconNames = this.state.tabIconNames;
         return (
-           <ScrollableTabView
-				renderTabBar={() => <GaGaTabBar tabNames={tabNames} tabIconNames={tabIconNames}/> }
-				tabBarPosition='bottom'>
-				<View style={styles.content} tabLabel='home'>
-					<Text>#1</Text>
-				</View>
-				<View style={styles.content} tabLabel='order'>
-					<Text>#2</Text>
-				</View>
-				<View style={styles.content} tabLabel='cart'>
-					<Text>#3</Text>
-				</View>
-				<View style={styles.content} tabLabel='center'>
-					<Text>#4</Text>
-				</View>
-			</ScrollableTabView>
+        <View style={{flex:1}}>
+                <IndicatorViewPager
+                    style={{flex:1}}
+                    indicator={this._renderTabIndicator()}
+                    >
+                    <View style={{backgroundColor:'cadetblue'}}>
+                        <Text>page one</Text>
+                    </View>
+                    <View style={{backgroundColor:'cornflowerblue'}}>
+                        <Text>page two</Text>
+                    </View>
+                    <View style={{backgroundColor:'#1AA094'}}>
+                        <Text>page three</Text>
+                    </View>
+                    <View style={{backgroundColor:'#ddd'}}>
+                        <Text>page four</Text>
+                    </View>
+                </IndicatorViewPager>
+            </View>
         );
     }
 }
 const styles=StyleSheet.create({
-   content: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#EBEBEB',
-		flex: 1
-	}
+   iconStyle:{
+       width:30,
+       height:30,
+   },
+   textStyle:{
+       color:'#999',
+   },
+   selectedTextStyle:{
+       color:'black',
+   }
 });
 export default AppMain;
