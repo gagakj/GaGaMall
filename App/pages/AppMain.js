@@ -10,6 +10,12 @@ import {
 } from 'react-native';
 
 import {IndicatorViewPager,PagerTabIndicator} from 'rn-viewpager';
+
+import Home from './Home';
+import Order from './Order';
+import Cart from './Cart';
+import Center from './Center';
+
 class AppMain extends Component {
     constructor(props) {
         super(props);
@@ -50,18 +56,10 @@ class AppMain extends Component {
                     style={{flex:1}}
                     indicator={this._renderTabIndicator()}
                     >
-                    <View style={{backgroundColor:'cadetblue'}}>
-                        <Text>page one</Text>
-                    </View>
-                    <View style={{backgroundColor:'cornflowerblue'}}>
-                        <Text>page two</Text>
-                    </View>
-                    <View style={{backgroundColor:'#1AA094'}}>
-                        <Text>page three</Text>
-                    </View>
-                    <View style={{backgroundColor:'#ddd'}}>
-                        <Text>page four</Text>
-                    </View>
+                    <Home/>
+                    <Order/>
+                    <Cart/>
+                    <Center/>
                 </IndicatorViewPager>
             </View>
         );
