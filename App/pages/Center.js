@@ -12,6 +12,7 @@ import{
 } from 'react-native';
 
 import Setting from './Setting';
+import More from './CenterContent/More';
 import CenterItem from '../component/CenterItem';
 import ImageButton from '../component/ImageButton';
 
@@ -36,9 +37,24 @@ class Center extends Component {
     }
     //判断当前点击了那个按钮
     itemActionIndex(position){
-        ToastAndroid.show('点击了第'+position+'项',ToastAndroid.SHORT);
+        const {navigator} = this.props;
         if(position === 0){
            
+        }else if(position === 1){
+
+        }else if(position === 2){
+
+        }else if(position === 3){
+
+        }else if(position === 4){
+
+        }else if(position === 5){
+        InteractionManager.runAfterInteractions(() => {
+        navigator.push({
+          component: More,
+          name: 'More'
+        });
+      });
         }
     }
     //编辑按钮
