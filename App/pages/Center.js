@@ -13,6 +13,7 @@ import{
 
 import Setting from './Setting';
 import CenterItem from '../component/CenterItem';
+import ImageButton from '../component/ImageButton';
 
 var {height,width} =  Dimensions.get('window');
 
@@ -21,6 +22,7 @@ class Center extends Component {
         super(props);
         this.settingButtonAction=this.settingButtonAction.bind(this);
         this.itemActionIndex=this.itemActionIndex.bind(this);
+        this.itemModifyAction=this.itemModifyAction.bind(this);
     }
     //设置按钮
     settingButtonAction(){
@@ -39,6 +41,11 @@ class Center extends Component {
            
         }
     }
+    //编辑按钮
+    itemModifyAction(){
+        ToastAndroid.show('itemModifyAction...',ToastAndroid.SHORT);
+    }
+
     render() {
         return (
              <View style={{flex:1,backgroundColor:'#f5f5f5'}}>
@@ -65,10 +72,12 @@ class Center extends Component {
                              <Text style={{color:'#ddd'}}>¥2000</Text>
                           </View>
                        </View>
-                       //编辑按钮
-                       <TouchableOpacity>
-                          
-                       </TouchableOpacity>
+
+                       <View style={styles.modify_item}>
+                          <ImageButton icon={require('../imgs/ic_center_modify.png')} title='编辑'
+                             onPress={()=>{this.itemModifyAction()}}
+                          />
+                       </View>
                     </View> 
                 </View>
 
@@ -102,7 +111,7 @@ class Center extends Component {
                 <CenterItem 
                    title='更多' 
                    icon={require('../imgs/ic_center_more.png')} 
-                   onPress={()=>this.itemActionIndex(4)}/>
+                   onPress={()=>this.itemActionIndex(5)}/>
                 <View style={styles.top_line}></View>
 
                 <TouchableOpacity style={{height:45,width:width,backgroundColor:'white',marginTop:10,justifyContent:'center',}}>
@@ -121,6 +130,12 @@ const styles=StyleSheet.create({
     center_line:{
         marginLeft:8,
         marginRight:8,
+    },
+    modify_item:{
+        alignItems:'flex-end',
+        flex:1,
+        marginRight:10,
+        marginTop:15
     }
 });
 export default Center;
