@@ -8,7 +8,11 @@ class Order extends Component {
     render() {
         return (
              <View>
-               <Text>订单</Text>
+                <View style={{height:45,backgroundColor:'black',flexDirection:'column'}}>
+                    <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+                       <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>订单</Text>   
+                    </View>  
+                </View>
              </View>
         );
     }

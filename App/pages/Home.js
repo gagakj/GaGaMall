@@ -35,7 +35,7 @@ class Home extends Component {
                     <View style={{backgroundColor:'#1AA094'}}>
                         <Text>page three</Text>
                     </View>
-                </IndicatorViewPager>
+             </IndicatorViewPager>
         );
     }
 }

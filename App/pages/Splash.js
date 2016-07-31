@@ -34,7 +34,7 @@ class Splash extends React.Component {
  
   render() {
     return (
-      <View style={{backgroundColor:'red',flex:1}}>
+      <View style={{flex:1}}>
       <Image
         style={{flex:1,width:width,height:height}}
         source={require('../imgs/ic_welcome.png')}

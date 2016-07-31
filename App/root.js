@@ -9,13 +9,23 @@ import {
   BackAndroid,
   View
 } from 'react-native';
+
 import Splash from './pages/Splash';
+import { NaviGoBack } from './utils/CommonUtils';
+
 var _navigator;
 class rootApp extends React.Component {
     constructor(props) {
        super(props);
        this.renderScene = this.renderScene.bind(this);
-    }
+       this.goBack = this.goBack.bind(this);
+       BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+   }
+
+  goBack() {
+    return NaviGoBack(_navigator);
+  }
+
   renderScene(route, navigator) {
     let Component = route.component;
     _navigator = navigator;
@@ -32,7 +42,7 @@ class rootApp extends React.Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar
-         backgroundColor="red"
+         backgroundColor="black"
          barStyle="default"
        />
         <Navigator

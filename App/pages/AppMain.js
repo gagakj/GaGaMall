@@ -44,7 +44,7 @@ class AppMain extends Component {
 			    renderIcon={() => <Image source={require("../imgs/ic_tab_order.png")} style={styles.iconStyle}/>}
 			    renderSelectedIcon={() => <Image source={require("../imgs/ic_tab_order_press.png")} style={styles.iconStyle}/>}
 			    onPress={() => this.setState({ selectedTab: 'order' })}>
-			    <Order />
+			    <Order {...this.props}/>
 			  </TabNavigator.Item>
 			  <TabNavigator.Item
 			  	title="购物车"
@@ -54,7 +54,7 @@ class AppMain extends Component {
 			    renderIcon={() => <Image source={require("../imgs/ic_tab_cart.png")} style={styles.iconStyle}/>}
 			    renderSelectedIcon={() => <Image source={require("../imgs/ic_tab_cart_press.png")} style={styles.iconStyle}/>}
 			    onPress={() => this.setState({ selectedTab: 'cart' })}>
-			    <Cart />
+			    <Cart {...this.props}/>
 			  </TabNavigator.Item>
 			  <TabNavigator.Item
 			  	title="我的"
@@ -64,7 +64,7 @@ class AppMain extends Component {
 			    renderIcon={() => <Image source={require("../imgs/ic_tab_center.png")} style={styles.iconStyle}/>}
 			    renderSelectedIcon={() => <Image source={require("../imgs/ic_tab_center_press.png")} style={styles.iconStyle}/>}
 			    onPress={() => this.setState({ selectedTab: 'center' })}>
-			    <Center />
+			    <Center {...this.props}/>
 			  </TabNavigator.Item>
 			</TabNavigator>
         );
