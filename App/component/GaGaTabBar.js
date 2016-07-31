@@ -12,7 +12,9 @@ import{
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
-
+let tabIconNames = ['../imgs/ic_tab_home.png','../imgs/ic_tab_order.png','../imgs/ic_tab_cart.png','../imgs/ic_tab_center.png'];
+let tabSelectedIconNames = ['../imgs/ic_tab_home_press.png','../imgs/ic_tab_order_press.png'
+,'../imgs/ic_tab_cart_press.png','../imgs/ic_tab_center_press.png'];
 class GaGaTabBar extends Component {    
    static propTypes={
         goToPage:React.PropTypes.func,  //跳转到对应tab的方法
@@ -20,8 +22,8 @@ class GaGaTabBar extends Component {
         tabs:React.PropTypes.array, //所有tabs集合
 
         tabNames:React.PropTypes.array,  //保存Tab名称
-        tabIconNames:React.PropTypes.array,  //保存Tab图标
-        tabSelectedIconNames:React.PropTypes.array,  //保存已选择的Tab图标
+        //tabIconNames:React.PropTypes.array,  //保存Tab图标
+        //tabSelectedIconNames:React.PropTypes.array,  //保存已选择的Tab图标
     }
     setAnimationValue({value}){
          console.log(value);
@@ -31,16 +33,14 @@ class GaGaTabBar extends Component {
 		this.props.scrollValue.addListener(this.setAnimationValue);
 	}
     renderTabOption(tab,i){
-        const color = this.props.activeTab == i? "#6B8E23" : "#ADADAD"; // 判断i是否是当前选中的tab，设置不同的颜色
+        const color = this.props.activeTab == i? "#000" : "#999"; // 判断i是否是当前选中的tab，设置不同的颜色
+        const img_src = this.props.activeTab == i ? tabIconNames[i] : tabSelectedIconNames[i];
         return (
         <TouchableOpacity onPress={()=>this.props.goToPage(i)} style={styles.tab}>
            <View style={styles.tabItem}>
-              <Icon
-				 name={this.props.tabIconNames[i]} // 图标
-				 size={30}
-				 color={color}/>
+              <Image style={{width:30,height:30}} source={require('../imgs/ic_tab_home.png')}/>
               <Text style={{color: color}}>
-                 {this.props.tabNames[i]}
+                 ....
             </Text>
            </View>
        </TouchableOpacity>
