@@ -9,9 +9,8 @@ import{
     Dimensions,
     Image,
     StyleSheet,
-    ViewPagerAndroid
 } from 'react-native';
-import {IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
+import {IndicatorViewPager, PagerDotIndicator} from 'rn-viewpager';
 var {height, width} = Dimensions.get('window');
 
 class Home extends Component {
@@ -26,7 +25,7 @@ class Home extends Component {
               <IndicatorViewPager
                     style={{height:140}}
                     indicator={this._renderDotIndicator()}
-                >
+                 >
                     <View style={{backgroundColor:'cadetblue'}}>
                         <Text>page one</Text>
                     </View>

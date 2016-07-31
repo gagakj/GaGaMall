@@ -6,6 +6,7 @@ React Native开发嘎嘎商城客户端-来自[江清清的技术专栏](http://
 ##### [2.react-native-scrollable-tab-view](https://github.com/skv-headless/react-native-scrollable-tab-view)
 ##### [3.react-native-swiper](https://github.com/leecade/react-native-swiper)
 ##### [4.react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
+##### [5.react-native-tab-navigator](https://github.com/exponentjs/react-native-tab-navigator)
 
 ####二.安装配置
 #####1.第一步
