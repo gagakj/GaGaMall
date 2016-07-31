@@ -20,7 +20,7 @@ class Setting extends Component {
   }
   render() {
         return (
-             <View>
+             <View style={{backgroundColor:'white',flex:1}}>
                 <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
                     <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{marginLeft:10,justifyContent:'center'}}>
                        <Image 
@@ -32,6 +32,7 @@ class Setting extends Component {
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>设置</Text>   
                     </View>  
                 </View>
+                
              </View>
         );
     }
