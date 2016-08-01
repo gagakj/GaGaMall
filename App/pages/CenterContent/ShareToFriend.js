@@ -43,7 +43,7 @@ class ShareToFriend extends Component {
                      <Text style={{marginTop:8}}>扫描直接下载嘎嘎商城App</Text>
                      <TouchableOpacity style={{marginTop:70}} onPress={()=>{this.buttonOtherShare()}}>
                          <Image source={require('../../imgs/ic_center_other_share.png')} style={styles.share_img}>
-                              <Text style={styles.share_img>其他分享方式</Text>
+                              <Text style={styles.share_img}>其他分享方式</Text>
                          </Image>
                      </TouchableOpacity>
                 </View>
@@ -65,12 +65,12 @@ const styles=StyleSheet.create({
     qrcode_img:{
         width:120,
         height:120,
-    }
+    },
     share_img:{
         width:260,
         height:35,
         justifyContent:'center'
-    }
+    },
     share_btn_tv:{
         color:'white',
         alignSelf:'center'

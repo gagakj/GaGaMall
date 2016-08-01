@@ -13,8 +13,10 @@ import{
 
 import Setting from './Setting';
 import More from './CenterContent/More';
+import AddressM from './CenterContent/AddressM';
 import CenterItem from '../component/CenterItem';
 import ImageButton from '../component/ImageButton';
+
 
 var {height,width} =  Dimensions.get('window');
 
@@ -41,7 +43,12 @@ class Center extends Component {
         if(position === 0){
            
         }else if(position === 1){
-
+          InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: AddressM,
+              name: 'AddressM'
+            });
+          });
         }else if(position === 2){
 
         }else if(position === 3){
@@ -49,13 +56,13 @@ class Center extends Component {
         }else if(position === 4){
 
         }else if(position === 5){
-        InteractionManager.runAfterInteractions(() => {
-        navigator.push({
-          component: More,
-          name: 'More'
-        });
-      });
-        }
+          InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: More,
+              name: 'More'
+              });
+            });
+      }
     }
     //编辑按钮
     itemModifyAction(){
