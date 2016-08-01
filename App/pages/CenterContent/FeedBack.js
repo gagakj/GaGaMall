@@ -1,5 +1,5 @@
 /**
- * 多语言切换
+ * 问题报告-意见反馈
  */
 'use strict';
 import React, {Component} from 'react';
@@ -14,26 +14,20 @@ import{
 } from 'react-native';
 
 import { NaviGoBack } from '../../utils/CommonUtils';
-import ShortLine from '../../component/ShortLine';
-import LanguageItem from '../../component/LanguageItem';
 
-class Language extends Component {
+class FeebBack extends Component {
   constructor(props) {
       super(props);
       this.buttonBackAction=this.buttonBackAction.bind(this);   
-      this.itemButtonAction=this.itemButtonAction.bind(this); 
+      this.submiteFeedBack=this.submiteFeedBack.bind(this);
   }
   //返回
   buttonBackAction(){
       const {navigator} = this.props;
       return NaviGoBack(navigator);
   }
-  itemButtonAction(position){
-      if(position === 0){
+  submiteFeedBack(){
 
-      }else if(position === 1){
-
-      }
   }
   render() {
         return (
@@ -46,27 +40,45 @@ class Language extends Component {
                        />
                     </TouchableOpacity>  
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-                       <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>语言切换</Text>   
+                       <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>问题报告</Text>   
                     </View>  
                 </View>
-                <LanguageItem title="简体中文(Simple Chinease)" 
-                              onPress={()=>{this.itemButtonAction(0)}} 
-                              selected={true}
-                              style={{marginTop:10}}
-                              />
-                <ShortLine/>
-                <LanguageItem title="英文(Enligsh)" onPress={()=>{this.itemButtonAction(1)}} selected={false}/>
-                
+                <View style={{height:200,backgroundColor:'white',marginTop:10}}>
+                    
+                </View>
+                <View style={styles.content_style}>
+                    <TouchableOpacity  onPress={()=>{this.submiteFeedBack()}}>
+                         <Image source={require('../../imgs/ic_center_other_share.png')} style={styles.share_img}>
+                              <Text style={styles.share_btn_tv}>提交反馈</Text>
+                        </Image>
+                    </TouchableOpacity>
+                </View>
              </View>
         );
     }
 }
 
 const styles=StyleSheet.create({
+    short_line:{
+        marginLeft:10,
+    },
     item_layout:{
         backgroundColor:'white',
         height:45,
         justifyContent:'center'
     },
+    share_img:{
+        width:260,
+        height:35,
+        justifyContent:'center',
+    },
+    share_btn_tv:{
+        color:'white',
+        alignSelf:'center'
+    },
+    content_style:{
+        alignItems:'center',
+        marginTop:10,
+    }
 });
-export default Language;
+export default FeebBack;

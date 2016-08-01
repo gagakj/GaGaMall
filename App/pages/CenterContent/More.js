@@ -10,7 +10,7 @@ import{
     InteractionManager,
 } from 'react-native';
 import { NaviGoBack } from '../../utils/CommonUtils';
-
+import ShortLine from '../../component/ShortLine';
 import ShareToFriend from './ShareToFriend';
 
 class More extends Component {
@@ -58,7 +58,7 @@ class More extends Component {
                 <TouchableOpacity style={styles.item_layout} onPress={()=>{this.itemButtonAction(0)}}>
                     <Text style={{marginLeft:10}}>检查更新</Text>   
                 </TouchableOpacity>
-                <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
+                <ShortLine/>
                 <TouchableOpacity style={styles.item_layout} onPress={()=>{this.itemButtonAction(1)}}>
                     <Text style={{marginLeft:10}}>分享给好友</Text>   
                 </TouchableOpacity>
@@ -69,9 +69,6 @@ class More extends Component {
 }
 
 const styles=StyleSheet.create({
-    short_line:{
-        marginLeft:10,
-    },
     top_layout:{
         height:226,
         justifyContent:'center',

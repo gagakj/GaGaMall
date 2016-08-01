@@ -12,7 +12,9 @@ import{
 
 import { NaviGoBack } from '../../utils/CommonUtils';
 import SettingItem from '../../component/SettingItem';
+import ShortLine from '../../component/ShortLine';
 import Language from './Language';
+import FeedBack from './FeedBack';
 
 class Setting extends Component {
   constructor(props) {
@@ -42,7 +44,12 @@ class Setting extends Component {
            });
         });
       }else if(position === 4){
-
+         InteractionManager.runAfterInteractions(() => {
+           navigator.push({
+              component: FeedBack,
+              name: 'FeedBack'
+           });
+        });
       }else if(position === 5){
 
       }else if(position === 6){
@@ -67,38 +74,35 @@ class Setting extends Component {
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>设置</Text>   
                     </View>  
                 </View>
-                <View style={{flexDirection:'column',flex:1}}>
-                        <SettingItem title="更改密码" onPress={()=>{this.itemButtonAction(2)}}/>
-                        <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
-                        <SettingItem title="语言" onPress={()=>{this.itemButtonAction(3)}}/>
-                        <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
-                        <SettingItem title="报告问题" onPress={()=>{this.itemButtonAction(4)}}/>
-                        <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
-                        <SettingItem title="评分" onPress={()=>{this.itemButtonAction(5)}}/>
-                        <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
-                        <SettingItem title="隐私策略" onPress={()=>{this.itemButtonAction(6)}}/>
-                        <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
-                        <SettingItem title="条款" onPress={()=>{this.itemButtonAction(7)}}/>
-                        <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
-                        <SettingItem title="关于我们" onPress={()=>{this.itemButtonAction(8)}}/>
-                   <View style={{flex:1,justifyContent:'flex-end'}}>
+                <View style={{flexDirection:'column',flex:1,marginTop:10}}>
+                    <SettingItem title="更改密码" onPress={()=>{this.itemButtonAction(2)}}/>
+                    <ShortLine/>
+                    <SettingItem title="语言" onPress={()=>{this.itemButtonAction(3)}}/>
+                    <ShortLine/>
+                    <SettingItem title="报告问题" onPress={()=>{this.itemButtonAction(4)}}/>
+                    <ShortLine/>
+                    <SettingItem title="评分" onPress={()=>{this.itemButtonAction(5)}}/>
+                    <ShortLine/>
+                    <SettingItem title="隐私策略" onPress={()=>{this.itemButtonAction(6)}}/>
+                    <ShortLine/>
+                    <SettingItem title="条款" onPress={()=>{this.itemButtonAction(7)}}/>
+                    <ShortLine/>
+                    <SettingItem title="关于我们" onPress={()=>{this.itemButtonAction(8)}}/>
+                    <View style={{flex:1,justifyContent:'flex-end'}}>
                         <TouchableOpacity style={styles.item_layout} onPress={()=>{this.itemButtonAction(0)}}>
                             <Text style={{marginLeft:10}}>清空缓存</Text>   
                         </TouchableOpacity>
-                        <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
+                        <ShortLine/>
                         <TouchableOpacity style={styles.item_layout} onPress={()=>{this.itemButtonAction(1)}}>
                             <Text style={{marginLeft:10}}>注销登录</Text>   
                         </TouchableOpacity>
-                   </View>
+                    </View>
                 </View>
              </View>
         );
     }
 }
 const styles=StyleSheet.create({
-    short_line:{
-        marginLeft:10,
-    },
     item_layout:{
         backgroundColor:'white',
         height:45,

@@ -91,7 +91,7 @@ class AddressM extends Component {
               </View>
               <View style={styles.foot_item_view}>
                    <Image source={require('../../imgs/ic_center_addressm_card_add.png')} 
-                        style={{width:25,height:25,marginRight:8}}/>
+                        style={{width:25,height:25,marginRight:10}}/>
               </View>
           </View>
       </TouchableOpacity>
