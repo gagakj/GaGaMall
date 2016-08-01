@@ -27,3 +27,5 @@ npm install
 Mac OS X:react-native run-android  or Windows OS:react-native start and react-native run-android
 ```
 ####三.运行效果
+#####1.个人中心
+![个人中心](./screenshot/demo_center.gif) 
