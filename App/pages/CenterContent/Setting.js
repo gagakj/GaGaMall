@@ -15,6 +15,7 @@ import SettingItem from '../../component/SettingItem';
 import ShortLine from '../../component/ShortLine';
 import Language from './Language';
 import FeedBack from './FeedBack';
+import About from './About';
 
 class Setting extends Component {
   constructor(props) {
@@ -57,7 +58,12 @@ class Setting extends Component {
       }else if(position === 7){
           
       }else if(position === 8){
-          
+          InteractionManager.runAfterInteractions(() => {
+           navigator.push({
+              component: About,
+              name: 'About'
+           });
+        });
       }
   }
   render() {
