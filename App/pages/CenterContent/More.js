@@ -53,7 +53,7 @@ class More extends Component {
                 </View>
                 <View style={styles.top_layout}>
                     <Image source={require('../../imgs/ic_center_more_icon.png')} style={{width:100,height:78}}/>
-                    <Text style={{fontSize:15}}>管家先生V1.0</Text>
+                    <Text style={{fontSize:15,marginTop:10}}>嘎嘎商城V1.0</Text>
                 </View>
                 <TouchableOpacity style={styles.item_layout} onPress={()=>{this.itemButtonAction(0)}}>
                     <Text style={{marginLeft:10}}>检查更新</Text>   

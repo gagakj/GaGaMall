@@ -29,3 +29,6 @@ Mac OS X:react-native run-android  or Windows OS:react-native start and react-na
 ####三.运行效果
 #####1.个人中心
 ![个人中心](./screenshot/demo_center.gif) 
+
+####四.安装包下载
+#####[1.Android版本](./apks/app-release.apk)
