@@ -7,17 +7,35 @@ import{
     TouchableOpacity,
     Image,
     StyleSheet,
+    InteractionManager,
 } from 'react-native';
 import { NaviGoBack } from '../../utils/CommonUtils';
+
+import ShareToFriend from './ShareToFriend';
+
 class More extends Component {
   constructor(props) {
       super(props);
       this.buttonBackAction=this.buttonBackAction.bind(this);    
+      this.itemButtonAction=this.itemButtonAction.bind(this);
   }
   //返回
   buttonBackAction(){
       const {navigator} = this.props;
       return NaviGoBack(navigator);
+  }
+  //按钮点击
+  itemButtonAction(position){
+      const {navigator} = this.props;
+      if(position === 0){
+      }else if(position === 1){
+        InteractionManager.runAfterInteractions(() => {
+        navigator.push({
+          component: ShareToFriend,
+          name: 'ShareToFriend'
+        });
+      });
+      }
   }
   render() {
         return (
@@ -37,11 +55,11 @@ class More extends Component {
                     <Image source={require('../../imgs/ic_center_more_icon.png')} style={{width:100,height:78}}/>
                     <Text style={{fontSize:15}}>管家先生V1.0</Text>
                 </View>
-                <TouchableOpacity style={styles.item_layout}>
+                <TouchableOpacity style={styles.item_layout} onPress={()=>{this.itemButtonAction(0)}}>
                     <Text style={{marginLeft:10}}>检查更新</Text>   
                 </TouchableOpacity>
                 <Image source={require('../../imgs/ic_short_bar.png')} style={styles.short_line}/>
-                <TouchableOpacity style={styles.item_layout}>
+                <TouchableOpacity style={styles.item_layout} onPress={()=>{this.itemButtonAction(1)}}>
                     <Text style={{marginLeft:10}}>分享给好友</Text>   
                 </TouchableOpacity>
                 <Image source={require('../../imgs/ic_large_bar.png')}/>
@@ -49,6 +67,7 @@ class More extends Component {
         );
     }
 }
+
 const styles=StyleSheet.create({
     short_line:{
         marginLeft:10,

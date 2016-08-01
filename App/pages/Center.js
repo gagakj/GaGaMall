@@ -139,7 +139,6 @@ class Center extends Component {
 }
 const styles=StyleSheet.create({
     top_line:{
-        width:width,
         height:1,
         backgroundColor:'#ccc'
     },
