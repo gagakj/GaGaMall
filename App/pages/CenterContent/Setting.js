@@ -7,7 +7,7 @@ import{
     TouchableOpacity,
     Image,
 } from 'react-native';
-import { NaviGoBack } from '../utils/CommonUtils';
+import { NaviGoBack } from '../../utils/CommonUtils';
 class Setting extends Component {
   constructor(props) {
       super(props);
@@ -25,7 +25,7 @@ class Setting extends Component {
                     <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{marginLeft:10,justifyContent:'center'}}>
                        <Image 
                           style={{width:13,height:20}}
-                          source={require('../imgs/ic_center_back.png')}
+                          source={require('../../imgs/ic_center_back.png')}
                        />
                     </TouchableOpacity>  
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>

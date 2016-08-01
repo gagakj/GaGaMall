@@ -11,7 +11,7 @@ import{
     ToastAndroid,
 } from 'react-native';
 
-import Setting from './Setting';
+import Setting from './CenterContent/Setting';
 import More from './CenterContent/More';
 import AddressM from './CenterContent/AddressM';
 import CenterItem from '../component/CenterItem';
