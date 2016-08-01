@@ -1,5 +1,5 @@
 /**
- * 个人中心封装的Item布局
+ * 设置界面Item布局
  */
 'use strict';
 import React, {PropTypes} from 'react';
@@ -14,14 +14,15 @@ import{
 const propTypes = {
   onPress: PropTypes.func,
   title: PropTypes.string,
-  icon: PropTypes.number,
 };
-const CenterItem = ({ onPress, title, icon}) => (
+const CenterItem = ({ onPress, title}) => (
   <TouchableOpacity style={styles.wrap_style} onPress={onPress}>
      <View style={{flexDirection:'row'}}>
-        <View style={styles.item_view}><Image style={styles.item_img} source={icon}/></View>
-        <View style={styles.item_view}><Text style={{marginLeft:8}}>{title}</Text></View>
-        <View style={styles.item_arrow_view}><Image source={require('../imgs/ic_center_right_arrow.png')} style={{width:12,height:18}}/></View>
+        <View style={styles.item_view}><Text style={{marginLeft:10,fontSize:13}}>{title}</Text></View>
+        <View style={styles.item_arrow_view}>
+            <Image source={require('../imgs/ic_center_right_arrow.png')} 
+                   style={{width:12,height:18}}/>
+        </View>
      </View>
   </TouchableOpacity>
 );
@@ -29,11 +30,6 @@ const styles=StyleSheet.create({
     wrap_style:{
        height:45,
        backgroundColor:'white',
-    },
-    item_img:{
-       width:25,
-       height:25,
-       marginLeft:10,
     },
     item_view:{
        height:45,

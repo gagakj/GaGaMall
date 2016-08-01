@@ -13,7 +13,7 @@ import{
 
 const propTypes = {
   onPress: PropTypes.func,
-  text: PropTypes.string,
+  title: PropTypes.string,
   icon: PropTypes.number,
 };
 const ImageButton = ({ onPress, title, icon}) => (
