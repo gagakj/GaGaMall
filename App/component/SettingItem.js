@@ -11,11 +11,7 @@ import{
     StyleSheet,
 } from 'react-native';
 
-const propTypes = {
-  onPress: PropTypes.func,
-  title: PropTypes.string,
-};
-const CenterItem = ({ onPress, title}) => (
+const SettingItem = ({ onPress, title}) => (
   <TouchableOpacity style={styles.wrap_style} onPress={onPress}>
      <View style={{flexDirection:'row'}}>
         <View style={styles.item_view}><Text style={{marginLeft:10,fontSize:13}}>{title}</Text></View>
@@ -44,6 +40,4 @@ const styles=StyleSheet.create({
     }
 });
 
-CenterItem.propTypes = propTypes;
-
-export default CenterItem;
+export default SettingItem;

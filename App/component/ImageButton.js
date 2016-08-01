@@ -10,12 +10,6 @@ import{
     Image,
     StyleSheet,
 } from 'react-native';
-
-const propTypes = {
-  onPress: PropTypes.func,
-  title: PropTypes.string,
-  icon: PropTypes.number,
-};
 const ImageButton = ({ onPress, title, icon}) => (
   <TouchableOpacity style={styles.wrap_style} onPress={onPress}>
       <Image style={styles.item_img} source={icon}>
@@ -33,7 +27,4 @@ const styles=StyleSheet.create({
        justifyContent:'center',
     },
 });
-
-ImageButton.propTypes = propTypes;
-
 export default ImageButton;

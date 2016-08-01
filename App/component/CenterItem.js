@@ -11,11 +11,6 @@ import{
     StyleSheet,
 } from 'react-native';
 
-const propTypes = {
-  onPress: PropTypes.func,
-  title: PropTypes.string,
-  icon: PropTypes.number,
-};
 const CenterItem = ({ onPress, title, icon}) => (
   <TouchableOpacity style={styles.wrap_style} onPress={onPress}>
      <View style={{flexDirection:'row'}}>
@@ -47,7 +42,4 @@ const styles=StyleSheet.create({
        marginRight:8
     }
 });
-
-CenterItem.propTypes = propTypes;
-
 export default CenterItem;

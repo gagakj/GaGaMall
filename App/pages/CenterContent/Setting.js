@@ -7,10 +7,12 @@ import{
     TouchableOpacity,
     Image,
     StyleSheet,
+    InteractionManager,
 } from 'react-native';
 
 import { NaviGoBack } from '../../utils/CommonUtils';
 import SettingItem from '../../component/SettingItem';
+import Language from './Language';
 
 class Setting extends Component {
   constructor(props) {
@@ -25,7 +27,31 @@ class Setting extends Component {
   }
   //按钮点击
   itemButtonAction(position){
+      const {navigator} = this.props;
+      if(position === 0){
 
+      }else if(position === 1){
+
+      }else if(position === 2){
+
+      }else if(position === 3){
+        InteractionManager.runAfterInteractions(() => {
+           navigator.push({
+              component: Language,
+              name: 'Language'
+           });
+        });
+      }else if(position === 4){
+
+      }else if(position === 5){
+
+      }else if(position === 6){
+
+      }else if(position === 7){
+          
+      }else if(position === 8){
+          
+      }
   }
   render() {
         return (
