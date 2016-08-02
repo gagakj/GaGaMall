@@ -26,8 +26,10 @@ npm install
 ```
 #####4.第四步
 ```
-[注意].暂时仅适配Android版本
+1.运行Android版本
 Mac OS X:react-native run-android  or Windows OS:react-native start and react-native run-android
+2.运行iOS版本
+Mac OS X:react-native run-ios or  xcode open project and run project
 ```
 ####三.运行效果
 #####整体效果
