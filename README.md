@@ -34,14 +34,8 @@ Mac OS X:react-native run-android  or Windows OS:react-native start and react-na
 #####1.Android版本
 ```
 1.签名key以及release签名信息已配置
-```
-```
 2.cd GaGaMall
-```
-```
 3.cd android && ./gradlew assembleRelease
-```
-```
 4.上述命令执行完毕,在android/app/build/outputs/apk目录下面生成app-release.apk
 ```
 
