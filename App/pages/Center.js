@@ -73,15 +73,18 @@ class Center extends Component {
         return (
              <View style={{flex:1,backgroundColor:'#f5f5f5'}}>
                 <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
+                    <View style={{flex:1}}></View>
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>我的</Text>   
                     </View>
+                    <View style={{flex:1,justifyContent:'flex-end',alignItems:'center',flexDirection:'row'}}>
                     <TouchableOpacity onPress={() => {this.settingButtonAction()}} style={{marginRight:10,justifyContent:'center'}}>
                        <Image 
                           style={{width:24,height:22}}
                           source={require('../imgs/ic_center_setting.png')}
                        />
                     </TouchableOpacity>  
+                    </View>
                 </View>
 
                 <View style={{backgroundColor:'white'}}>

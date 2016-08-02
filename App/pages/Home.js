@@ -112,10 +112,8 @@ class Home extends Component {
                  </View>
                 </View>   
              </View>
-
              <View style={{marginTop:8,backgroundColor:'white'}}>
                   <View style={{height:45,justifyContent:'center',alignItems:'center'}}><Text>推荐活动</Text></View>
-
              </View>
            </View>         
         );
