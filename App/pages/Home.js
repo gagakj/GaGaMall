@@ -16,7 +16,6 @@ import{
 import {IndicatorViewPager, PagerDotIndicator} from 'rn-viewpager';
 import City from './City';
 import Search from './Search';
-
 import ShortLine from '../component/ShortLine';
 var {height, width} = Dimensions.get('window');
 var item_width = (width-1)/2;
