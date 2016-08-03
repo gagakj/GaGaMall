@@ -1,7 +1,7 @@
 # GaGaMall
-React Native开发嘎嘎商城客户端-来自[江清清的技术专栏](http://www.lcode.org)</br>
+React Native开发嘎嘎商城客户端-来自[江清清的技术专栏](http://www.lcode.org)</br></br>
 关注我的订阅号(codedev123),每天推送分享移动开发技术(Android/iOS),React Native技术文章,项目管理,程序猿日常点滴以及精品技术资讯文章(欢迎关注,精彩第一时间推送)。</br>
-![订阅号:codedev123](./screenshot/qrcode_jiangqq.jpg) 
+![订阅号:codedev123](./screenshot/qrcode_jiangqq.jpg) </br>
 
 ####一.依赖组件
 ##### [1.rn-viewpager](https://github.com/zbtang/React-Native-ViewPager)
@@ -10,6 +10,7 @@ React Native开发嘎嘎商城客户端-来自[江清清的技术专栏](http://
 ##### [4.react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
 ##### [5.react-native-tab-navigator](https://github.com/exponentjs/react-native-tab-navigator)
 ##### [6.leancloud-storage](https://leancloud.cn/docs/)
+##### [7.react-native-storage](https://github.com/sunnylqm/react-native-storage)
 
 ####二.安装配置
 #####1.第一步
