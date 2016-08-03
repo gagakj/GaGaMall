@@ -11,7 +11,7 @@ import{
     StyleSheet,
 } from 'react-native';
 
-const ShortLine = () => (
+const ShortLineTwo = () => (
     <View style={{backgroundColor:'white'}}>
         <Image source={require('../imgs/ic_short_bar.png')} 
                style={styles.short_line}/>           
@@ -20,6 +20,7 @@ const ShortLine = () => (
 const styles=StyleSheet.create({
     short_line:{
         marginLeft:10,
+        marginRight:10
     },
 });
-export default ShortLine;
+export default ShortLineTwo;
