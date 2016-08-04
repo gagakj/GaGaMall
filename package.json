@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "fetch-http-client": "0.0.3",
     "leancloud-storage": "^1.3.2",
     "react": "15.2.1",
     "react-native": "^0.30.0",

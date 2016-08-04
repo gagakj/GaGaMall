@@ -106,8 +106,8 @@ class Order extends Component {
                   <Image source={require('../imgs/order/ic_order_arrow_right.png')} style={styles.item_view_icon}/>
                   <View style={styles.item_view_center_status}>
                        <Image source={require('../imgs/order/ic_order_status.png')} 
-                              style={styles.item_view_center_status_tv}>
-                           <Text style={styles.item_view_tv_status>{order.orderStauts === 1 ? '订单完成' : '订单取消'}</Text>
+                              style={styles.item_view_center_status_tv_img}>
+                           <Text style={styles.item_view_center_status_tv}>{order.orderStauts === 1 ? '订单完成' : '订单取消'}</Text>
                        </Image>
                   </View>
              </View>
@@ -171,7 +171,7 @@ const styles=StyleSheet.create({
         flex:1,
         marginRight:10
     },
-    item_view_center_status_tv:{
+    item_view_center_status_tv_img:{
         height:20,
         width:62,
         justifyContent:'center',
