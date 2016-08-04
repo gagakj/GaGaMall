@@ -7,7 +7,8 @@ import{
     TouchableOpacity,
     StyleSheet,
     Image,
-    Dimensions
+    Dimensions,
+    InteractionManager
 } from 'react-native';
 const ORDER_DATA={
     "api":"GetOrderHistory",
@@ -48,7 +49,10 @@ const ORDER_DATA={
         "price":78
     }]
 };
+import OrderSingle from './OrderSingle';
+
 var {height,width} = Dimensions.get('window');
+
 class Order extends Component {
 
     constructor(props) {
@@ -68,7 +72,14 @@ class Order extends Component {
   }
   //点击列表每一项响应按钮
   onPressItem(order){
-      
+     const {navigator} = this.props;
+     InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: OrderSingle,
+              name: 'OrderSingle',
+              order
+            });
+          });
   }
   //进行渲染数据
   renderContent(dataSource) {
@@ -87,37 +98,39 @@ class Order extends Component {
   renderItem(order) {
     return (
         <View>
-        <View style={{backgroundColor:'#f5f5f5',height:8}}></View>
+        <View style={styles.item_view_zhanwei}></View>
+        <TouchableOpacity onPress={()=>{this.onPressItem(order)}}>
         <View style={{backgroundColor:'white'}}>
-             <View style={{flexDirection:'row',height:40,marginLeft:10,alignItems:'center'}}>
+             <View style={styles.item_view_center}>
                   <Text style={{color:'black'}}>{order.shopName}</Text>
-                  <Image source={require('../imgs/order/ic_order_arrow_right.png')} style={{width:10,height:15,marginLeft:5}}/>
-                  <View style={{alignItems:'flex-end',flex:1,marginRight:10}}>
+                  <Image source={require('../imgs/order/ic_order_arrow_right.png')} style={styles.item_view_icon}/>
+                  <View style={styles.item_view_center_status}>
                        <Image source={require('../imgs/order/ic_order_status.png')} 
-                              style={{height:20,width:62,justifyContent:'center',alignItems:"center"}}>
-                           <Text style={{color:'white',fontSize:10}}>{order.orderStauts === 1 ? '订单完成' : '订单取消'}</Text>
+                              style={styles.item_view_center_status_tv}>
+                           <Text style={styles.item_view_tv_status>{order.orderStauts === 1 ? '订单完成' : '订单取消'}</Text>
                        </Image>
                   </View>
              </View>
              <Image source={require('../imgs/order/ic_order_heng.png')} style={{width:(width-20),marginLeft:10,marginRight:10}}/>
-             <View style={{flexDirection:'row',height:90,alignItems:'center'}}>
-                   <Image source={require('../imgs/order/ic_order_shop_icon.png')} style={{width:50,height:50,marginLeft:10}}/>
-                   <View style={{flexDirection:'column',marginLeft:10}}>
-                         <Text style={{fontSize:14,color:'black'}}>{order.title}</Text>
-                         <Text style={{color:'#777',fontSize:13}}>{order.time}</Text>
+             <View style={styles.item_view_center_msg}>
+                   <Image source={require('../imgs/order/ic_order_shop_icon.png')} style={styles.item_view_center_icon}/>
+                   <View style={styles.item_view_center_title_img}>
+                         <Text style={styles.item_view_center_title}>{order.title}</Text>
+                         <Text style={styles.item_view_center_time}>{order.time}</Text>
                    </View>
              </View>
              <Image source={require('../imgs/order/ic_order_heng_shi.png')} style={{width:(width-20),marginLeft:10,marginRight:10}}/>
-             <View style={{flexDirection:'row',height:40}}>
-                   <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                         <Text style={{color:'red',fontSize:14}}>¥{order.price}</Text>
+             <View style={styles.item_view_bottom}>
+                   <View style={styles.item_view_bottom_price_v}>
+                         <Text style={styles.item_view_bottom_price}>¥{order.price}</Text>
                     </View>
                    <Image source={require('../imgs/order/ic_order_shu.png')} style={{height:40}}/>
-                   <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                         <Text style={{fontSize:14,color:'black'}}>再来一单</Text>
+                   <View style={styles.item_view_bottom_again_v}>
+                         <Text style={styles.item_view_bottom_again}>再来一单</Text>
                    </View>
              </View>
         </View>
+        </TouchableOpacity>
         </View>
     );
   }
@@ -137,5 +150,80 @@ class Order extends Component {
         );
     }
 }
-
+const styles=StyleSheet.create({
+    item_view_zhanwei:{
+        backgroundColor:'#f5f5f5',
+        height:8
+    },
+    item_view_center:{
+        flexDirection:'row',
+        height:40,
+        marginLeft:10,
+        alignItems:'center'
+    },
+    item_view_icon:{
+        width:10,
+        height:15,
+        marginLeft:5
+    },
+    item_view_center_status:{
+        alignItems:'flex-end',
+        flex:1,
+        marginRight:10
+    },
+    item_view_center_status_tv:{
+        height:20,
+        width:62,
+        justifyContent:'center',
+        alignItems:"center"
+    },
+    item_view_center_status_tv:{
+        color:'white',
+        fontSize:10
+    },
+    item_view_center_msg:{
+        flexDirection:'row',
+        height:90,
+        alignItems:'center'
+    },
+    item_view_center_icon:{
+        width:50,
+        height:50,
+        marginLeft:10
+    },
+    item_view_center_title_img:{
+        flexDirection:'column',
+        marginLeft:10
+    },
+    item_view_center_title:{
+        fontSize:14,
+        color:'black'
+    },
+    item_view_center_time:{
+        color:'#777',
+        fontSize:13
+    },
+    item_view_bottom:{
+        flexDirection:'row',
+        height:40
+    },
+    item_view_bottom_price_v:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    item_view_bottom_price:{
+        color:'red',
+        fontSize:14
+    },
+    item_view_bottom_again_v:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    item_view_bottom_again:{
+        fontSize:14,
+        color:'black'
+    }
+});
 export default Order;
