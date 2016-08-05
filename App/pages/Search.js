@@ -12,10 +12,12 @@ import {
   TouchableOpacity,
   ListView,
   TextInput,
+  InteractionManager,
 } from 'react-native';
 
 import { NaviGoBack } from '../utils/CommonUtils';
 import ShortLine from '../component/ShortLine';
+import StoreList from './StoreList';
 
 var content = '';
 const SEARCH_DATA={
@@ -58,7 +60,15 @@ class Search extends React.Component {
       return NaviGoBack(navigator);
   }
   topItemAction(position){
-      
+      const {navigator} = this.props;
+      if(position === 0){
+          InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: StoreList,
+              name: 'StoreList'
+            });
+          });
+      }
   }
   onEndReached(typeId) {
      
