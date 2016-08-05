@@ -1,5 +1,5 @@
 /**
- * 城市选择
+ * 订单确认
  */
 'use strict';
 import React from 'react';
