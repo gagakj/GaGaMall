@@ -39,10 +39,10 @@ Mac OS X:react-native run-ios or  xcode open project and run project
 ####三.运行效果
 #####整体效果
 ![个人中心](./screenshot/demo_center.gif) 
-![城市选择](./screenshot/1.png) 
-![订单列表](./screenshot/2.png) 
-![订单详情1](./screenshot/3.png) 
-![订单详情2](./screenshot/4.png) 
+![城市选择](./screenshot/1.jpeg) 
+![订单列表](./screenshot/2.jpeg) 
+![订单详情1](./screenshot/3.jpeg) 
+![订单详情2](./screenshot/4.jpeg) 
 
 ####四.打包方法
 #####1.Android版本
