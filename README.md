@@ -43,6 +43,7 @@ Mac OS X:react-native run-ios or  xcode open project and run project
 ![订单列表](./screenshot/2.jpeg) 
 ![订单详情1](./screenshot/3.jpeg) 
 ![订单详情2](./screenshot/4.jpeg) 
+![订单状态](./screenshot/5.jpeg) 
 
 ####四.打包方法
 #####1.Android版本
