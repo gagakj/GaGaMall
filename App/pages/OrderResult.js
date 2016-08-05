@@ -11,36 +11,21 @@ import {
   StyleSheet,
   TouchableOpacity,
   ListView,
-  InteractionManager,
 } from 'react-native';
 import { NaviGoBack } from '../utils/CommonUtils';
 var {height, width} = Dimensions.get('window');
-import OrderResult from './OrderResult';
 
-class OrderConfirm extends React.Component {
-
+class OrderResult extends React.Component {
   constructor(props) {
     super(props);
     this.buttonBackAction=this.buttonBackAction.bind(this);   
-    this.payItemAction=this.payItemAction.bind(this);
   } 
     //返回
   buttonBackAction(){
       const {navigator} = this.props;
       return NaviGoBack(navigator);
   }
-
-  //订单提交
-  payItemAction(){
-      const {navigator} = this.props;
-      InteractionManager.runAfterInteractions(() => {
-        navigator.push({
-          component: OrderResult,
-          name: 'OrderResult'
-           });
-        });
-  }
-
+  
   render() {
     const {navigator,route} = this.props;
     return (
@@ -54,18 +39,9 @@ class OrderConfirm extends React.Component {
                      />
                 </TouchableOpacity>  
                 <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-                    <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>订单确认</Text>   
+                    <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>订单结果</Text>   
                 </View>  
                 <View style={{width:45,height:45,}}></View>
-          </View>
-
-          <View style={{flex:1,justifyContent:'flex-end'}}>
-                <TouchableOpacity onPress={()=>{this.payItemAction()}}>
-                      <Image source={require('../imgs/cart/ic_cart_btn_bg.png')} 
-                             style={{width:width,height:40,justifyContent:'center',alignItems:'center'}}>
-                             <Text style={{color:'white',fontSize:14}}>确定提交</Text>
-                      </Image>
-               </TouchableOpacity>
           </View>
        </View>         
     );
@@ -74,4 +50,4 @@ class OrderConfirm extends React.Component {
 let styles = StyleSheet.create({
    
 });
-export default OrderConfirm
+export default OrderResult
