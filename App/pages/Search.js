@@ -18,7 +18,7 @@ import {
 import { NaviGoBack } from '../utils/CommonUtils';
 import ShortLine from '../component/ShortLine';
 import StoreList from './StoreList';
-
+var {height, width} = Dimensions.get('window');
 var content = '';
 const SEARCH_DATA={
     "api":"GetSearchHistory",

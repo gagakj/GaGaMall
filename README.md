@@ -8,13 +8,14 @@ React Native开发嘎嘎商城客户端-来自[江清清的技术专栏](http://
 ![订阅号:codedev123](./screenshot/qrcode_jiangqq.jpg) </br>
 
 ####一.依赖组件
-##### [1.rn-viewpager](https://github.com/zbtang/React-Native-ViewPager)
-##### [2.react-native-scrollable-tab-view](https://github.com/skv-headless/react-native-scrollable-tab-view)
-##### [3.react-native-swiper](https://github.com/leecade/react-native-swiper)
-##### [4.react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
-##### [5.react-native-tab-navigator](https://github.com/exponentjs/react-native-tab-navigator)
-##### [6.leancloud-storage](https://leancloud.cn/docs/)
-##### [7.react-native-storage](https://github.com/sunnylqm/react-native-storage)
+###### [1.rn-viewpager](https://github.com/zbtang/React-Native-ViewPager)
+###### [2.react-native-scrollable-tab-view](https://github.com/skv-headless/react-native-scrollable-tab-view)
+###### [3.react-native-swiper](https://github.com/leecade/react-native-swiper)
+###### [4.react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
+###### [5.react-native-tab-navigator](https://github.com/exponentjs/react-native-tab-navigator)
+###### [6.leancloud-storage](https://leancloud.cn/docs/)
+###### [7.react-native-storage](https://github.com/sunnylqm/react-native-storage)
+###### [8.react-native-parallax-scroll-view](https://github.com/jaysoo/react-native-parallax-scroll-view)
 
 ####二.安装配置
 #####1.第一步

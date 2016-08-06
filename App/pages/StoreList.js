@@ -12,10 +12,12 @@ import {
   TouchableOpacity,
   ListView,
   TextInput,
+  InteractionManager,
 } from 'react-native';
 
 import { NaviGoBack } from '../utils/CommonUtils';
 import ShortLine from '../component/ShortLine';
+import StoreDetails from './StoreDetails';
 var {height, width} = Dimensions.get('window');
 let tempTypeIds = [1,2,3,4];
 
@@ -89,12 +91,19 @@ class StoreList extends React.Component {
   topItemAction(position){
       
   }
-   onEndReached(typeId) {
+  onEndReached(typeId) {
      
   }
   //点击列表每一项响应按钮
   onPressItem(data){
-      
+      const {navigator} = this.props;
+      InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: StoreDetails,
+              name: 'StoreDetails',
+              data
+            });
+          });
   }
   //进行渲染数据
   renderContent(dataSource) {
