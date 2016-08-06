@@ -1,53 +1,183 @@
 /**
- * 订单提交结果
+ * 商品详情
  */
-'use strict';
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Dimensions,
   Image,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
   ListView,
+  PixelRatio,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
-import { NaviGoBack } from '../utils/CommonUtils';
-var {height, width} = Dimensions.get('window');
 
-class StoreDetails extends React.Component {
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
+
+class StoreDetails extends Component {
   constructor(props) {
     super(props);
-    this.buttonBackAction=this.buttonBackAction.bind(this);
-  } 
-    //返回
-  buttonBackAction(){
-      const {navigator} = this.props;
-      return NaviGoBack(navigator);
+    this.state =  {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      }).cloneWithRows([
+        'Simplicity Matters',
+        'Hammock Driven Development',
+        'Value of Values',
+        'Are We There Yet?',
+        'The Language of the System',
+        'Design, Composition, and Performance',
+        'Clojure core.async',
+        'The Functional Database',
+        'Deconstructing the Database',
+        'Hammock Driven Development',
+        'Value of Values'
+      ])
+    };
   }
+
   render() {
-    const {navigator,route} = this.props;
+    const { onScroll = () => {} } = this.props;
     return (
-        <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-             <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
-                <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
-                   style={{width:45,height:45,justifyContent:'center',alignItems:'center'}}>
-                    <Image 
-                          style={{width:13,height:20}}
-                          source={require('../imgs/ic_center_back.png')}
-                     />
-                </TouchableOpacity>  
-                <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-                    <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>商家详情</Text>   
-                </View>  
-                <View style={{width:45,height:45,}}></View>
-           </View>
-          
-       </View>         
+      <ListView
+        ref="ListView"
+        style={styles.container}
+        dataSource={ this.state.dataSource }
+        renderRow={(rowData) => (
+          <View key={rowData} style={ styles.row }>
+            <Text style={ styles.rowText }>
+              { rowData }
+            </Text>
+          </View>
+         )}
+        renderScrollComponent={props => (
+          <ParallaxScrollView
+            onScroll={onScroll}
+
+            headerBackgroundColor="#333"
+            stickyHeaderHeight={ STICKY_HEADER_HEIGHT }
+            parallaxHeaderHeight={ PARALLAX_HEADER_HEIGHT }
+            backgroundSpeed={10}
+
+            renderBackground={() => (
+              <View key="background">
+                <Image source={{uri: 'https://i.ytimg.com/vi/P-NZei5ANaQ/maxresdefault.jpg',
+                                width: window.width,
+                                height: PARALLAX_HEADER_HEIGHT}}/>
+                <View style={{position: 'absolute',
+                              top: 0,
+                              width: window.width,
+                              backgroundColor: 'rgba(0,0,0,.4)',
+                              height: PARALLAX_HEADER_HEIGHT}}/>
+              </View>
+            )}
+
+            renderForeground={() => (
+              <View key="parallax-header" style={ styles.parallaxHeader }>
+                <Image style={ styles.avatar } source={{
+                  uri: 'https://pbs.twimg.com/profile_images/2694242404/5b0619220a92d391534b0cd89bf5adc1_400x400.jpeg',
+                  width: AVATAR_SIZE,
+                  height: AVATAR_SIZE
+                }}/>
+                <Text style={ styles.sectionSpeakerText }>
+                  Talks by Rich Hickey
+                </Text>
+                <Text style={ styles.sectionTitleText }>
+                  CTO of Cognitec, Creator of Clojure
+                </Text>
+              </View>
+            )}
+
+            renderStickyHeader={() => (
+              <View key="sticky-header" style={styles.stickySection}>
+                <Text style={styles.stickySectionText}>Rich Hickey Talks</Text>
+              </View>
+            )}
+
+            renderFixedHeader={() => (
+              <View key="fixed-header" style={styles.fixedSection}>
+                <Text style={styles.fixedSectionText}
+                      onPress={() => this.refs.ListView.scrollTo({ x: 0, y: 0 })}>
+                  Scroll to top
+                </Text>
+              </View>
+            )}/>
+        )}
+      />
     );
   }
 }
-let styles = StyleSheet.create({
-   
+
+const window = Dimensions.get('window');
+
+const AVATAR_SIZE = 120;
+const ROW_HEIGHT = 60;
+const PARALLAX_HEADER_HEIGHT = 350;
+const STICKY_HEADER_HEIGHT = 70;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black'
+  },
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: window.width,
+    height: PARALLAX_HEADER_HEIGHT
+  },
+  stickySection: {
+    height: STICKY_HEADER_HEIGHT,
+    width: 300,
+    justifyContent: 'flex-end'
+  },
+  stickySectionText: {
+    color: 'white',
+    fontSize: 20,
+    margin: 10
+  },
+  fixedSection: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10
+  },
+  fixedSectionText: {
+    color: '#999',
+    fontSize: 20
+  },
+  parallaxHeader: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'column',
+    paddingTop: 100
+  },
+  avatar: {
+    marginBottom: 10,
+    borderRadius: AVATAR_SIZE / 2
+  },
+  sectionSpeakerText: {
+    color: 'white',
+    fontSize: 24,
+    paddingVertical: 5
+  },
+  sectionTitleText: {
+    color: 'white',
+    fontSize: 18,
+    paddingVertical: 5
+  },
+  row: {
+    overflow: 'hidden',
+    paddingHorizontal: 10,
+    height: ROW_HEIGHT,
+    backgroundColor: 'white',
+    borderColor: '#ccc',
+    borderBottomWidth: 1,
+    justifyContent: 'center'
+  },
+  rowText: {
+    fontSize: 20
+  }
 });
-export default StoreDetails
+
+export default StoreDetails;

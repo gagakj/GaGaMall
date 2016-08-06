@@ -63,7 +63,7 @@ class OrderConfirm extends React.Component {
                 <TouchableOpacity onPress={()=>{this.payItemAction()}}>
                       <Image source={require('../imgs/cart/ic_cart_btn_bg.png')} 
                              style={{width:width,height:40,justifyContent:'center',alignItems:'center'}}>
-                             <Text style={{color:'white',fontSize:14}}>确定提交</Text>
+                             <Text style={{color:'white',fontSize:14,backgroundColor:'#00000000'}}>确定提交</Text>
                       </Image>
                </TouchableOpacity>
           </View>

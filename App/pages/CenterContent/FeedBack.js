@@ -116,7 +116,8 @@ const styles=StyleSheet.create({
     },
     share_btn_tv:{
         color:'white',
-        alignSelf:'center'
+        alignSelf:'center',
+        backgroundColor:'#00000000'
     },
     content_style:{
         alignItems:'center',

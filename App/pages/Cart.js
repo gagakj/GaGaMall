@@ -66,7 +66,7 @@ class Cart extends Component {
                       <TouchableOpacity onPress={()=>{this.payItemAction()}}>
                               <Image source={require('../imgs/cart/ic_cart_btn_bg.png')} 
                                      style={{width:width,height:40,justifyContent:'center',alignItems:'center'}}>
-                                     <Text style={{color:'white',fontSize:14}}>结算</Text>
+                                     <Text style={{color:'white',fontSize:14,backgroundColor:'#00000000'}}>结算</Text>
                               </Image>
                       </TouchableOpacity>
                 </View>

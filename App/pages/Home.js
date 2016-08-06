@@ -258,7 +258,8 @@ const styles=StyleSheet.create({
     },
     center_item_tv:{
         fontSize:14,
-        marginBottom:8
+        marginBottom:8,
+        backgroundColor:'#00000000'
     }
 });
 export default Home;

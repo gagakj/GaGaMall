@@ -154,10 +154,10 @@ class OrderStatus extends React.Component {
     return (
        <View style={{marginLeft:15,marginTop:10}}>
               <View style={{flexDirection:'row'}}>
-                      <Text style={{color:'black',fontSize:14}}>{data.status}</Text>
-                      <View style={{flex:1,alignItems:'flex-end',marginRight:10}}><Text style={{color:'#777',fontSize:12}}>{data.time}</Text></View>
+                      <Text style={{color:'black',fontSize:14,backgroundColor:'#00000000'}}>{data.status}</Text>
+                      <View style={{flex:1,alignItems:'flex-end',marginRight:10}}><Text style={{color:'#777',fontSize:12,backgroundColor:'#00000000'}}>{data.time}</Text></View>
                       </View>
-                      <Text style={{color:'#777',fontSize:12,marginTop:10}}>{data.remark}</Text>
+                      <Text style={{color:'#777',fontSize:12,marginTop:10,backgroundColor:'#00000000'}}>{data.remark}</Text>
       </View>
     );
   }

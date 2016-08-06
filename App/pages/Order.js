@@ -179,7 +179,8 @@ const styles=StyleSheet.create({
     },
     item_view_center_status_tv:{
         color:'white',
-        fontSize:10
+        fontSize:10,
+        backgroundColor:'#00000000'
     },
     item_view_center_msg:{
         flexDirection:'row',

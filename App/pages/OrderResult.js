@@ -77,13 +77,13 @@ class OrderResult extends React.Component {
                           <TouchableOpacity style={{flex:1}} onPress={()=>{this.itemButtonActiom(0)}}>
                               <Image source={require('../imgs/cart/ic_cart_cha_order.png')} 
                                      style={{justifyContent:'center',alignItems:'center'}}>
-                                     <Text style={{color:'white'}}>查看订单</Text>
+                                     <Text style={{color:'white',backgroundColor:'#00000000'}}>查看订单</Text>
                               </Image>
                           </TouchableOpacity> 
                           <TouchableOpacity style={{flex:1,marginLeft:8}} onPress={()=>{this.itemButtonActiom(1)}}>
                               <Image source={require('../imgs/cart/ic_cart_pay_order.png')} 
                                      style={{justifyContent:'center',alignItems:'center'}}>
-                                     <Text style={{color:'white'}}>付款</Text>
+                                     <Text style={{color:'white',backgroundColor:'#00000000'}}>付款</Text>
                               </Image>
                           </TouchableOpacity> 
                      </View>
