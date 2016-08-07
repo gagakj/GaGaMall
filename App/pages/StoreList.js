@@ -28,7 +28,7 @@ const STORE_DATA={
     "msg":"success",
     "data":[{
         "id":1,
-        "name":"与河畔美景一同赏味时令佳肴 四川Brunch",
+        "name":"四川Brunch",
         "star":4,
         "comment":45,
         "tag":"中国餐馆,四川菜,重辣",
@@ -36,7 +36,7 @@ const STORE_DATA={
         "remark":"每日有优惠"
     },{
         "id":2,
-        "name":"与河畔美景一同赏味时令佳肴 四川Brunch",
+        "name":"聚星楼",
         "star":4,
         "comment":45,
         "tag":"中国餐馆,四川菜,重辣",
@@ -44,7 +44,7 @@ const STORE_DATA={
         "remark":"每日有优惠"
     },{
         "id":3,
-        "name":"与河畔美景一同赏味时令佳肴 四川Brunch",
+        "name":"四川川二娃",
         "star":4,
         "comment":45,
         "tag":"中国餐馆,四川菜,重辣",
@@ -52,7 +52,7 @@ const STORE_DATA={
         "remark":"每日有优惠"
     },{
         "id":4,
-        "name":"与河畔美景一同赏味时令佳肴 四川Brunch",
+        "name":"韩国大烤肉",
         "star":4,
         "comment":45,
         "tag":"中国餐馆,四川菜,重辣",
@@ -60,7 +60,7 @@ const STORE_DATA={
         "remark":"每日有优惠"
     },{
         "id":5,
-        "name":"与河畔美景一同赏味时令佳肴 四川Brunch",
+        "name":"釜山料理",
         "star":4,
         "comment":45,
         "tag":"中国餐馆,四川菜,重辣",

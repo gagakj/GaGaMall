@@ -21,3 +21,43 @@ export const ADDRESS_DATA={
         "postcode":"226100"
     }]
 };
+export const STORE_DETAILS_DATA={
+    "api":"GetStoreDetails",
+    "v":"1.0",
+    "code":"0",
+    "msg":"success",
+    "data":[{
+        "typeId":1,
+        "typeName":"主食类",
+    },{
+         "typeId":2,
+        "typeName":"火锅类",
+    },{
+        "typeId":3,
+        "typeName":"小吃",
+    },{
+        "typeId":4,
+        "typeName":"果汁",
+    },{
+        "typeId":5,
+        "typeName":"套餐类",
+    },{
+        "typeId":6,
+        "typeName":"特色黄焖鸡",
+    },{
+        "typeId":7,
+        "typeName":"桥头排骨系列",
+    },{
+        "typeId":8,
+        "typeName":"素材热卖",
+    },{
+        "typeId":9,
+        "typeName":"奶茶饮品",
+    },{
+        "typeId":10,
+        "typeName":"啤酒小商品",
+    },{
+        "typeId":11,
+        "typeName":"超级小龙虾",
+    }]
+};
