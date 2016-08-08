@@ -7,12 +7,14 @@ import {
   Navigator,
   StatusBar,
   BackAndroid,
-  View
+  View,
+  Platform
 } from 'react-native';
 
 import Splash from './pages/Splash';
 import { NaviGoBack } from './utils/CommonUtils';
-
+export const STATUS_BAR_HEIGHT = (Platform.OS === 'ios' ? 20 : 25)
+export const ABOVE_LOLIPOP = Platform.Version && Platform.Version > 19
 var _navigator;
 class rootApp extends React.Component {
     constructor(props) {
@@ -42,8 +44,9 @@ class rootApp extends React.Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar
-         backgroundColor="black"
-         barStyle="default"
+            barStyle='light-content'
+            backgroundColor='transparent'
+            style={{height: STATUS_BAR_HEIGHT}}
        />
         <Navigator
           ref='navigator'

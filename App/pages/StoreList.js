@@ -94,6 +94,14 @@ class StoreList extends React.Component {
   onEndReached(typeId) {
      
   }
+  /**
+   * Render a separator between rows
+   */
+  _renderSeparatorView(sectionID: number, rowID: number, adjacentRowHighlighted: bool) {
+    return (
+      <View key={`${sectionID}-${rowID}`} style={styles.separator} />
+    );
+  }
   //点击列表每一项响应按钮
   onPressItem(data){
       const {navigator} = this.props;
@@ -109,19 +117,21 @@ class StoreList extends React.Component {
   renderContent(dataSource) {
     return (
       <ListView
+        
         initialListSize={1}
         dataSource={dataSource}
         renderRow={this.renderItem}
         style={{backgroundColor:'white',flex:1}}
         onEndReachedThreshold={10}
         enableEmptySections={true}
+        renderSeparator={this._renderSeparatorView}
       />
     );
    }
   //渲染每一项的数据
   renderItem(data) {
     return (
-      <View>
+      <View key={data.id}>
       <TouchableOpacity onPress={()=>{this.onPressItem(data)}}>
           <View style={{flexDirection:'row',marginLeft:8,marginTop:8,marginBottom:8}} >
               <Image source={require('../imgs/store/ic_store_lv_item.png')} style={{width:130,height:115}}/>
@@ -206,7 +216,7 @@ class StoreList extends React.Component {
                </View>
           </View>
           <Image source={require('../imgs/ic_center_line.png')}/>
-           <View style={{flex:1}}>
+          <View style={{flex:1}}>
                {this.renderContent(this.state.dataSource.cloneWithRows(
                          this.state.storeLists === undefined ? [] : this.state.storeLists))}
           </View>
@@ -215,5 +225,9 @@ class StoreList extends React.Component {
   }
 }
 let styles = StyleSheet.create({
+    separator: {
+       height: 1,
+       backgroundColor: '#eee'
+  }
 });
 export default StoreList;
