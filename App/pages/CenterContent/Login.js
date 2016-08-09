@@ -14,6 +14,7 @@ import{
 import { NaviGoBack } from '../../utils/CommonUtils';
 import Register from './Register';
 import ShortLineTwo from '../../component/ShortLineTwo';
+import ResetPwd from  './ResetPwd';
 
 var username = '';
 var password = '';
@@ -49,7 +50,13 @@ class Login extends Component {
 
   }
   findPwdAction(){
-
+     const {navigator} = this.props;
+     InteractionManager.runAfterInteractions(() => {
+               navigator.push({
+                   component: ResetPwd,
+                   name: 'ResetPwd'
+                });
+            });
   }
   thirdPartLoginAction(position){
 
@@ -99,11 +106,11 @@ class Login extends Component {
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
-                            ref={'username'}
+                            ref={'password'}
                             multiline={true}
                             autoFocus={true}
                             onChangeText={(text) => {
-                               username = text;
+                               password = text;
                             }}
                            />
                           <TouchableOpacity onPress={() => {this.buttonChangeState()}} style={{width:45,height:45,alignItems:'center',justifyContent:'center'}}>
