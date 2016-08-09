@@ -17,6 +17,7 @@ import AddressM from './CenterContent/AddressM';
 import Login from './CenterContent/Login';
 import CenterItem from '../component/CenterItem';
 import ImageButton from '../component/ImageButton';
+import ModifyInformation from './CenterContent/ModifyInformation';
 
 
 
@@ -79,7 +80,13 @@ class Center extends Component {
     }
     //编辑按钮
     itemModifyAction(){
-        ToastAndroid.show('itemModifyAction...',ToastAndroid.SHORT);
+       const {navigator} = this.props;
+       InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: ModifyInformation,
+              name: 'ModifyInformation'
+              });
+            });
     }
 
     render() {
