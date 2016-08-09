@@ -14,8 +14,10 @@ import{
 import Setting from './CenterContent/Setting';
 import More from './CenterContent/More';
 import AddressM from './CenterContent/AddressM';
+import Login from './CenterContent/Login';
 import CenterItem from '../component/CenterItem';
 import ImageButton from '../component/ImageButton';
+
 
 
 var {height,width} =  Dimensions.get('window');
@@ -26,6 +28,7 @@ class Center extends Component {
         this.settingButtonAction=this.settingButtonAction.bind(this);
         this.itemActionIndex=this.itemActionIndex.bind(this);
         this.itemModifyAction=this.itemModifyAction.bind(this);
+        this.loginButtonActiom=this.loginButtonActiom.bind(this);
     }
     //设置按钮
     settingButtonAction(){
@@ -36,6 +39,16 @@ class Center extends Component {
           name: 'Setting'
         });
       });
+    }
+    //登录
+    loginButtonActiom(){
+        const {navigator} = this.props;
+        InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: Login,
+              name: 'Login'
+            });
+          });
     }
     //判断当前点击了那个按钮
     itemActionIndex(position){
@@ -89,8 +102,9 @@ class Center extends Component {
 
                 <View style={{backgroundColor:'white'}}>
                     <View style={{flexDirection:'row',height:100}}>
-                       <Image  style={{width:70,height:70,marginLeft:10,marginTop:15}} source={require('../imgs/ic_center_icon.png')}/>
-                       
+                       <TouchableOpacity onPress={() => {this.loginButtonActiom()}} >
+                           <Image  style={{width:70,height:70,marginLeft:10,marginTop:15}} source={require('../imgs/ic_center_icon.png')}/>
+                       </TouchableOpacity>
                        <View style={{flexDirection:'column',justifyContent:'center',marginLeft:10}}>
                           <Text>Julia Stone</Text>
                           <View style={{flexDirection:'row'}}>
