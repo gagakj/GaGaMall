@@ -17,6 +17,7 @@ import{
 
 import { NaviGoBack } from '../../utils/CommonUtils';
 import { CHARGE_DATA } from '../../common/VirtualData';
+import ChargeModify from './ChargeModify';
 
 class Charge extends Component {
   constructor(props) {
@@ -29,9 +30,9 @@ class Charge extends Component {
       }
       this.buttonBackAction=this.buttonBackAction.bind(this);    
       this.onPressItem=this.onPressItem.bind(this);
-      this.addAddressAction=this.addAddressAction.bind(this);
       this.renderItem = this.renderItem.bind(this); 
       this.renderFooter = this.renderFooter.bind(this);
+      this.addChargeAction=this.addChargeAction.bind(this);
   }
   
   componentDidMount() {
@@ -48,9 +49,22 @@ class Charge extends Component {
   }
   //点击列表每一项响应按钮
   onPressItem(charge){
-      
+      const {navigator} = this.props;
+      InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: ChargeModify,
+              name: 'ChargeModify'
+            });
+          });
   }
-  addAddressAction(){
+  addChargeAction(){
+      const {navigator} = this.props;
+      InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: ChargeModify,
+              name: 'ChargeModify'
+            });
+          });
   }
   //进行渲染数据
   renderContent(dataSource) {
@@ -94,8 +108,8 @@ class Charge extends Component {
   }
   renderFooter() {
     return (
-        <View style={{ height: 55,backgroundColor:'#f5f5f5'}}>
-           <TouchableOpacity onPress={()=>{this.addAddressAction()}}>
+        <View style={{height: 55,backgroundColor:'#f5f5f5'}}>
+           <TouchableOpacity onPress={()=>{this.addChargeAction()}}>
                <View style={{ height: 45, flexDirection: 'row',backgroundColor:'white',marginTop:10}}>
                  <Image source={require('../../imgs/ic_card_icon.png')} style={{marginLeft:10,width:24,height:18,alignSelf:'center'}}/>
                  <View style={{justifyContent:'center'}}>
