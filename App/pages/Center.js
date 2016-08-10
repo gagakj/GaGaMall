@@ -19,8 +19,6 @@ import CenterItem from '../component/CenterItem';
 import ImageButton from '../component/ImageButton';
 import ModifyInformation from './CenterContent/ModifyInformation';
 
-
-
 var {height,width} =  Dimensions.get('window');
 
 class Center extends Component {
