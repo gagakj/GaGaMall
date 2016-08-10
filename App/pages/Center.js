@@ -18,6 +18,7 @@ import Login from './CenterContent/Login';
 import CenterItem from '../component/CenterItem';
 import ImageButton from '../component/ImageButton';
 import ModifyInformation from './CenterContent/ModifyInformation';
+import Charge from './CenterContent/Charge';
 
 var {height,width} =  Dimensions.get('window');
 
@@ -62,6 +63,12 @@ class Center extends Component {
             });
           });
         }else if(position === 2){
+           InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: Charge,
+              name: 'Charge'
+            });
+          });
 
         }else if(position === 3){
 

@@ -21,6 +21,29 @@ export const ADDRESS_DATA={
         "postcode":"226100"
     }]
 };
+
+export const CHARGE_DATA={
+    "api":"GetChargeList",
+    "v":"1.0",
+    "code":"0",
+    "msg":"success",
+    "data":[{
+        "name":"张三",
+        "cardNumber":"6226 1111 2345 4567",
+        "month":"7",
+        "year":"2018",
+        "securityCode":"345672",
+        "postcode":"226001"
+    },{
+        "name":"李四",
+        "cardNumber":"6226 1111 2345 4567",
+        "month":"7",
+        "year":"2018",
+        "securityCode":"345672",
+        "postcode":"226001"
+    }]
+};
+
 export const STORE_DETAILS_DATA={
     "data": {
         "food_spu_tags": [

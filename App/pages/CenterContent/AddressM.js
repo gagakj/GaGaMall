@@ -72,9 +72,18 @@ class AddressM extends Component {
         onEndReachedThreshold={10}
         renderFooter={this.renderFooter}
         enableEmptySections={true}
+        renderSeparator={this._renderSeparatorView}
       />
     );
    }
+  /**
+   * Render a separator between rows
+   */
+  _renderSeparatorView(sectionID: number, rowID: number, adjacentRowHighlighted: bool) {
+    return (
+      <View key={`${sectionID}-${rowID}`} style={styles.separator} />
+    );
+  } 
   //渲染每一项的数据
   renderItem(address) {
     return (
@@ -151,7 +160,11 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         alignItems:'flex-end',
         flex:1,
-    }
+    },
+    separator: {
+       height: 1,
+       backgroundColor: '#eee'
+   }
 });
 
 export default AddressM;
