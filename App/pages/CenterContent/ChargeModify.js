@@ -75,7 +75,7 @@ class ChargeModify extends Component {
                           <Text style={{color:'black',marginLeft:23}}>姓名</Text>
                           <TextInput 
                             style={{color:'#777',marginRight:13,height:40,fontSize: 15,textAlign: 'right',textAlignVertical:'center',flex:1}}
-                            placeholer="请输入姓名"
+                            placeholder="请输入姓名"
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
@@ -91,7 +91,7 @@ class ChargeModify extends Component {
                           <Text style={{color:'black',marginLeft:23}}>卡号</Text>
                           <TextInput 
                             style={{color:'#777',marginRight:13,height:40,fontSize: 15,textAlign: 'right',textAlignVertical:'center',flex:1}}
-                            placeholer="请输入卡号"
+                            placeholder="请输入卡号"
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
@@ -107,7 +107,7 @@ class ChargeModify extends Component {
                           <Text style={{color:'black',marginLeft:23}}>月</Text>
                           <TextInput 
                             style={{color:'#777',marginRight:13,height:40,fontSize: 15,textAlign: 'right',textAlignVertical:'center',flex:1}}
-                            placeholer="请输入月份"
+                            placeholder="请输入月份"
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
@@ -123,7 +123,7 @@ class ChargeModify extends Component {
                           <Text style={{color:'black',marginLeft:23}}>年</Text>
                           <TextInput 
                             style={{color:'#777',marginRight:13,height:40,fontSize: 15,textAlign: 'right',textAlignVertical:'center',flex:1}}
-                            placeholer="请输入年份"
+                            placeholder="请输入年份"
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
@@ -139,7 +139,7 @@ class ChargeModify extends Component {
                           <Text style={{color:'black',marginLeft:23}}>安全码</Text>
                           <TextInput 
                             style={{color:'#777',marginRight:13,height:40,fontSize: 15,textAlign: 'right',textAlignVertical:'center',flex:1}}
-                            placeholer="请输入安全码"
+                            placeholder="请输入安全码"
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
@@ -155,7 +155,7 @@ class ChargeModify extends Component {
                           <Text style={{color:'black',marginLeft:23}}>邮编</Text>
                           <TextInput 
                             style={{color:'#777',marginRight:13,height:40,fontSize: 15,textAlign: 'right',textAlignVertical:'center',flex:1}}
-                            placeholer="请输入邮编"
+                            placeholder="请输入邮编"
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
