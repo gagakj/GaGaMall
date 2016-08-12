@@ -24,6 +24,8 @@ import {LOGIN_ACTION} from  '../../common/Request';
 import {NativeModules} from 'react-native';
 var EncryptionModule = NativeModules.EncryptionModule;
 
+import Loading from '../../component/Loading';
+
 
 const client = new FetchHttpClient('http://192.168.1.104:8080/');
 
@@ -56,6 +58,7 @@ class Login extends Component {
                (Platform.OS === 'android') ? ToastAndroid.show('密码不能为空...',ToastAndroid.SHORT) : ''; 
                return;
            }
+           this.getLoading().show();
            EncryptionModule.MD5ByCallBack(password,(msg)=>{
                client.addMiddleware(form());
                      client.addMiddleware(request => {
@@ -69,6 +72,7 @@ class Login extends Component {
               }).then(response => {
                 return response.json();
               }).then((result)=>{
+                 this.getLoading().dismiss(); 
                  if(result.code === '1'){
                      //登录成功..
                      (Platform.OS === 'android') ? ToastAndroid.show('登录成功...',ToastAndroid.SHORT) : '';  
@@ -77,9 +81,11 @@ class Login extends Component {
                      (Platform.OS === 'android') ? ToastAndroid.show(result.msg,ToastAndroid.SHORT) : ''; 
                  }
               }).catch((error) => {
+                this.getLoading().dismiss();  
                 (Platform.OS === 'android') ? ToastAndroid.show(error.msg,ToastAndroid.SHORT) : '';  
               });
              },(error)=>{
+               this.getLoading().dismiss();  
                (Platform.OS === 'android') ? ToastAndroid.show('密码加密失败...',ToastAndroid.SHORT) : ''; 
            });
            
@@ -108,6 +114,10 @@ class Login extends Component {
   thirdPartLoginAction(position){
 
   }
+  getLoading() {
+    return this.refs['loading'];
+  }
+  
   render() {
         return (
              <View style={{backgroundColor:'#f5f5f5',flex:1}}>
@@ -192,6 +202,7 @@ class Login extends Component {
                           </TouchableOpacity>
                     </View>
                 </View>
+                 <Loading ref={'loading'} text={'登录中...'} />
              </View>
         );
     }
