@@ -13,10 +13,8 @@
     "react-native": "^0.30.0",
     "react-native-encryption-library": "^1.0.9",
     "react-native-parallax-scroll-view": "^0.19.0",
-    "react-native-scrollable-tab-view": "^0.5.3",
     "react-native-storage": "^0.1.2",
     "react-native-tab-navigator": "^0.3.2",
-    "react-native-vector-icons": "^2.0.3",
     "rn-viewpager": "^1.1.3"
   }
 }

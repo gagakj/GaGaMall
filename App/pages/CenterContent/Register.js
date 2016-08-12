@@ -89,26 +89,6 @@ class Login extends Component {
                                         style={{width:17,height:14,marginLeft:13}}/>
                           </TouchableOpacity>
                     </View>
-                    <ShortLineTwo/>
-                    <View style={{flexDirection:'row',height:45,alignItems:'center'}}>
-                          <TextInput 
-                            style={{height:40,fontSize: 15,textAlign: 'left',textAlignVertical:'center',flex:1}}
-                            placeholder="请输入验证码"
-                            placeholderTextColor="#aaaaaa"
-                            underlineColorAndroid="transparent"
-                            numberOfLines={1}
-                            ref={'verifyCode'}
-                            multiline={true}
-                            autoFocus={true}
-                            onChangeText={(text) => {
-                               verifyCode = text;
-                            }}
-                           />
-                          <TouchableOpacity onPress={() => {this.queryVerifyCode()}} 
-                                            style={{width:100,height:45,alignItems:'center',justifyContent:'center'}}>
-                                <Text style={{fontSize:13,color:'#777'}}>获取验证码</Text>
-                          </TouchableOpacity>
-                    </View>
                 </View>
                 <Text style={{marginTop:13,marginLeft:13,fontSize:12,color:'#777'}}>注册则视为您已同意《嘎嘎商城用户协议》</Text>
                 <TouchableOpacity onPress={() => {this.registerAction()}} 
