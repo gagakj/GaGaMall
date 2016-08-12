@@ -9,12 +9,23 @@ import{
     StyleSheet,
     InteractionManager,
     TextInput,
+    Platform,
+    ToastAndroid,
 } from 'react-native';
-
+//(Platform.OS === 'ios') ? '' : '';
 import { NaviGoBack } from '../../utils/CommonUtils';
 import Register from './Register';
 import ShortLineTwo from '../../component/ShortLineTwo';
 import ResetPwd from  './ResetPwd';
+import FetchHttpClient, { form,header } from 'fetch-http-client';
+import {requestData} from '../../utils/Common';
+import {LOGIN_ACTION} from  '../../common/Request';
+
+import {NativeModules} from 'react-native';
+var EncryptionModule = NativeModules.EncryptionModule;
+
+
+const client = new FetchHttpClient('http://192.168.1.104:8080/');
 
 var username = '';
 var password = '';
@@ -32,12 +43,48 @@ class Login extends Component {
       const {navigator} = this.props;
       return NaviGoBack(navigator);
   }
-  //用户注册
+  //用户登录/注册
   buttonRegisterOrLoginAction(position){
       const {navigator} = this.props;
       if(position === 0){
-          
+            //用户登录
+           if(username === ''){
+               (Platform.OS === 'android') ? ToastAndroid.show('用户名不能为空...',ToastAndroid.SHORT) : ''; 
+               return;
+           }
+           if(password === ''){
+               (Platform.OS === 'android') ? ToastAndroid.show('密码不能为空...',ToastAndroid.SHORT) : ''; 
+               return;
+           }
+           EncryptionModule.MD5ByCallBack(password,(msg)=>{
+               client.addMiddleware(form());
+                     client.addMiddleware(request => {
+                     request.options.headers['appkey'] = '8a9283a0567d5bea01567d5beaf90000';
+                  });
+              client.post(LOGIN_ACTION, {
+                  form: {
+                    username: username,
+                    password: msg,
+                 },
+              }).then(response => {
+                return response.json();
+              }).then((result)=>{
+                 if(result.code === '1'){
+                     //登录成功..
+                     (Platform.OS === 'android') ? ToastAndroid.show('登录成功...',ToastAndroid.SHORT) : '';  
+                     NaviGoBack(navigator);
+                 }else{
+                     (Platform.OS === 'android') ? ToastAndroid.show(result.msg,ToastAndroid.SHORT) : ''; 
+                 }
+              }).catch((error) => {
+                (Platform.OS === 'android') ? ToastAndroid.show(error.msg,ToastAndroid.SHORT) : '';  
+              });
+             },(error)=>{
+               (Platform.OS === 'android') ? ToastAndroid.show('密码加密失败...',ToastAndroid.SHORT) : ''; 
+           });
+           
       }else if(position === 1){
+           //用户注册
            InteractionManager.runAfterInteractions(() => {
                navigator.push({
                    component: Register,
@@ -47,7 +94,7 @@ class Login extends Component {
         }
   }
   buttonChangeState(){
-
+      
   }
   findPwdAction(){
      const {navigator} = this.props;
@@ -108,7 +155,7 @@ class Login extends Component {
                             numberOfLines={1}
                             ref={'password'}
                             multiline={true}
-                            autoFocus={true}
+                            secureTextEntry={true}
                             onChangeText={(text) => {
                                password = text;
                             }}
