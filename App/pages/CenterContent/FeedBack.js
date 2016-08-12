@@ -17,6 +17,7 @@ import{
 import { NaviGoBack } from '../../utils/CommonUtils';
 
 var content = '';
+var contact = '';
 class FeebBack extends Component {
   constructor(props) {
       super(props);
@@ -87,6 +88,22 @@ class FeebBack extends Component {
                                content = text;
                             }}
                       />
+                    <Image source={require('../../imgs/ic_large_bar.png')}/>  
+                    <View style={{flexDirection:'row',height:45,alignItems:'center'}}>
+                          <Text style={{marginLeft:13}}>联系方式:</Text>
+                          <TextInput 
+                            style={{height:40,fontSize: 15,textAlign: 'left',textAlignVertical:'center',flex:1}}
+                            placeholder="必填"
+                            placeholderTextColor="#aaaaaa"
+                            underlineColorAndroid="transparent"
+                            numberOfLines={1}
+                            ref={'contact'}
+                            multiline={true}
+                            onChangeText={(text) => {
+                               contact = text;
+                            }}
+                           />
+                    </View>
                 </View>
                 <View style={styles.content_style}>
                     <TouchableOpacity  onPress={()=>{this.submiteFeedBack()}}>

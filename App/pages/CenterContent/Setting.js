@@ -16,6 +16,8 @@ import ShortLine from '../../component/ShortLine';
 import Language from './Language';
 import FeedBack from './FeedBack';
 import About from './About';
+import ResetPwd from  './ResetPwd';
+import Prepaid from './Prepaid';
 
 class Setting extends Component {
   constructor(props) {
@@ -36,7 +38,12 @@ class Setting extends Component {
       }else if(position === 1){
 
       }else if(position === 2){
-
+        InteractionManager.runAfterInteractions(() => {
+           navigator.push({
+              component: ResetPwd,
+              name: 'ResetPwd'
+           });
+        });
       }else if(position === 3){
         InteractionManager.runAfterInteractions(() => {
            navigator.push({
