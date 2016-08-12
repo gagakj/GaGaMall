@@ -9,10 +9,22 @@ import{
     StyleSheet,
     InteractionManager,
     TextInput,
+    Platform,
+    ToastAndroid,
 } from 'react-native';
 
 import { NaviGoBack } from '../../utils/CommonUtils';
 import ShortLineTwo from '../../component/ShortLineTwo';
+
+import FetchHttpClient, { form,header } from 'fetch-http-client';
+import {HOST,REGISTER_ACTION} from  '../../common/Request';
+import {NativeModules} from 'react-native';
+var EncryptionModule = NativeModules.EncryptionModule;
+
+import Loading from '../../component/Loading';
+
+const client = new FetchHttpClient(HOST);
+
 
 var username = '';
 var password = '';
@@ -21,7 +33,6 @@ class Login extends Component {
   constructor(props) {
       super(props);
       this.buttonBackAction=this.buttonBackAction.bind(this);    
-      this.queryVerifyCode=this.queryVerifyCode.bind(this);
       this.buttonChangeState=this.buttonChangeState.bind(this);
       this.registerAction=this.registerAction.bind(this);
 }
@@ -31,13 +42,53 @@ class Login extends Component {
       return NaviGoBack(navigator);
   }
   buttonChangeState(){
-
-  }
-  queryVerifyCode(){
-      
+    
   }
   registerAction(){
-
+       const {navigator} = this.props;
+       //用户登录
+       if(username === ''){
+               (Platform.OS === 'android') ? ToastAndroid.show('用户名不能为空...',ToastAndroid.SHORT) : ''; 
+               return;
+        }
+       if(password === ''){
+               (Platform.OS === 'android') ? ToastAndroid.show('密码不能为空...',ToastAndroid.SHORT) : ''; 
+               return;
+        }
+       this.getLoading().show();
+       EncryptionModule.MD5ByCallBack(password,(msg)=>{
+       client.addMiddleware(form());
+                client.addMiddleware(request => {
+                request.options.headers['appkey'] = '8a9283a0567d5bea01567d5beaf90000';
+                  });
+              client.post(REGISTER_ACTION, {
+                  form: {
+                    username: username,
+                    password: msg,
+                 },
+              }).then(response => {
+                return response.json();
+              }).then((result)=>{
+                 this.getLoading().dismiss(); 
+                 if(result.code === '0'){
+                     //登录成功..
+                     (Platform.OS === 'android') ? ToastAndroid.show('注册成功...',ToastAndroid.SHORT) : '';  
+                     NaviGoBack(navigator);
+                 }else{
+                     (Platform.OS === 'android') ? ToastAndroid.show(result.msg,ToastAndroid.SHORT) : ''; 
+                 }
+              }).catch((error) => {
+                this.getLoading().dismiss();  
+                (Platform.OS === 'android') ? ToastAndroid.show(error.msg,ToastAndroid.SHORT) : '';  
+              });
+             },(error)=>{
+               this.getLoading().dismiss();  
+               (Platform.OS === 'android') ? ToastAndroid.show('密码加密失败...',ToastAndroid.SHORT) : ''; 
+           });
+  }
+  //获取加载进度组件
+  getLoading() {
+    return this.refs['loading'];
   }
   render() {
         return (
@@ -79,7 +130,6 @@ class Login extends Component {
                             numberOfLines={1}
                             ref={'password'}
                             multiline={true}
-                            autoFocus={true}
                             onChangeText={(text) => {
                                password = text;
                             }}
@@ -98,6 +148,7 @@ class Login extends Component {
                           <Text style={{color:'white'}}>注册</Text>
                     </Image>
                 </TouchableOpacity>
+                <Loading ref={'loading'} text={'登录中...'} />
              </View>
         );
     }
