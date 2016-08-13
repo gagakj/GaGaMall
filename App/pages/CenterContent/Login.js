@@ -80,7 +80,7 @@ class Login extends Component {
                  }
               }).catch((error) => {
                 this.getLoading().dismiss();  
-                (Platform.OS === 'android') ? ToastAndroid.show(error.msg,ToastAndroid.SHORT) : '';  
+                (Platform.OS === 'android') ? ToastAndroid.show('网络连接异常',ToastAndroid.SHORT) : '';  
               });
              },(error)=>{
                this.getLoading().dismiss();  

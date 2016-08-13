@@ -79,7 +79,7 @@ class Login extends Component {
                  }
               }).catch((error) => {
                 this.getLoading().dismiss();  
-                (Platform.OS === 'android') ? ToastAndroid.show(error.msg,ToastAndroid.SHORT) : '';  
+                (Platform.OS === 'android') ? ToastAndroid.show('网络连接异常...',ToastAndroid.SHORT) : '';  
               });
              },(error)=>{
                this.getLoading().dismiss();  
@@ -130,6 +130,7 @@ class Login extends Component {
                             numberOfLines={1}
                             ref={'password'}
                             multiline={true}
+                            secureTextEntry={true}
                             onChangeText={(text) => {
                                password = text;
                             }}

@@ -1,6 +1,6 @@
 
 
-export const HOST='http://192.168.1.104:8080/';  //API地址
+export const HOST='http://222.184.250.36:8082/GaGaMallServer/';  //API地址
 
 export const LOGIN_ACTION = "LoginAction";  //用户登录
 
