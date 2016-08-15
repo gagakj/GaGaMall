@@ -19,7 +19,18 @@ import ShortLine from '../../component/ShortLine';
 var {height,width} =  Dimensions.get('window');
 var buttonWidth=(width-40)/3;
 
-let tempTypeIds = ['10','30','50','100','200','500','自定义金额'];
+let typeCategory={
+  0:'10',
+  1:'30',
+  2:'50',
+  3:'100',
+  4:'200',
+  5:'500',
+  6:'自定义金额',
+};
+
+let tempTypeIds = [0,1,2,3,4,5,6];
+let checked = -1;
 
 class Prepaid extends Component {
   constructor(props) {
@@ -27,6 +38,7 @@ class Prepaid extends Component {
       this.buttonBackAction=this.buttonBackAction.bind(this);    
       this.renderItem=this.renderItem.bind(this);
       this.buttonItem=this.buttonItem.bind(this);
+      this.submitPay=this.submitPay.bind(this);
   }
   //返回
   buttonBackAction(){
@@ -35,15 +47,28 @@ class Prepaid extends Component {
   }
   buttonItem(rowData){
       const {navigator} = this.props;
+      checked = rowData;
+      console.log('rowData:'+rowData);
+      if(rowData === (tempTypeIds.length-1)){
+         //点击了自定义金额,进行打开Modal
+         
+      }else{
+         //选中部分金额
+      }
+  }
+  //提交支付
+  submitPay(){
+      console.log('submitPay...');
   }
   renderItem(rowData) {
-    return (
+     var ischecked = rowData === checked ? true : false;
+     return (
        <Button
              key={rowData}
              containerStyle={{marginTop:10,width:buttonWidth, padding: 10, backgroundColor:'white',
                                   borderWidth: 1, borderColor: '#b3b3b3',marginLeft: 10}}
              style={{ fontSize: 14, textAlign: 'center',color: '#b3b3b3'}}
-             text={rowData}
+             text={typeCategory[rowData]}
              onPress={()=>{this.buttonItem(rowData)}}
             />
     );
@@ -96,7 +121,7 @@ class Prepaid extends Component {
                       </TouchableOpacity>
                 </View>
                 <View style={{flex:1,justifyContent:'flex-end',alignItems:'center'}}>
-                     <TouchableOpacity style={{marginBottom:10}}>
+                     <TouchableOpacity style={{marginBottom:10}} onPress={()=>{this.submitPay()}}>
                          <Image source={require('../../imgs/ic_center_other_share.png')} style={styles.share_img}>
                               <Text style={styles.share_btn_tv}>确定充值</Text>
                          </Image>
