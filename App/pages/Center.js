@@ -19,6 +19,7 @@ import CenterItem from '../component/CenterItem';
 import ImageButton from '../component/ImageButton';
 import ModifyInformation from './CenterContent/ModifyInformation';
 import Charge from './CenterContent/Charge';
+import Prepaid from './CenterContent/Prepaid';
 
 var {height,width} =  Dimensions.get('window');
 
@@ -54,7 +55,12 @@ class Center extends Component {
     itemActionIndex(position){
         const {navigator} = this.props;
         if(position === 0){
-           
+           InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: Prepaid,
+              name: 'Prepaid'
+            });
+          });
         }else if(position === 1){
           InteractionManager.runAfterInteractions(() => {
             navigator.push({
