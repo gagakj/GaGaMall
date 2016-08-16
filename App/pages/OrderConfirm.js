@@ -45,9 +45,9 @@ class OrderConfirm extends React.Component {
     const {navigator,route} = this.props;
     return (
         <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-             <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
+             <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
                 <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
-                   style={{width:45,height:45,justifyContent:'center',alignItems:'center'}}>
+                   style={{width:48,height:48,justifyContent:'center',alignItems:'center'}}>
                     <Image 
                           style={{width:13,height:20}}
                           source={require('../imgs/ic_center_back.png')}
@@ -56,7 +56,7 @@ class OrderConfirm extends React.Component {
                 <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                     <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>订单确认</Text>   
                 </View>  
-                <View style={{width:45,height:45,}}></View>
+                <View style={{width:48,height:48,}}></View>
           </View>
 
           <View style={{flex:1,justifyContent:'flex-end'}}>

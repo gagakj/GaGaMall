@@ -19,6 +19,7 @@ import ShortLineTwo from '../../component/ShortLineTwo';
 import ResetPwd from  './ResetPwd';
 import FetchHttpClient, { form,header } from 'fetch-http-client';
 import {HOST,LOGIN_ACTION} from  '../../common/Request';
+import { toastShort } from '../../utils/ToastUtil';
 import {NativeModules} from 'react-native';
 var EncryptionModule = NativeModules.EncryptionModule;
 
@@ -49,11 +50,11 @@ class Login extends Component {
       if(position === 0){
             //用户登录
            if(username === ''){
-               (Platform.OS === 'android') ? ToastAndroid.show('用户名不能为空...',ToastAndroid.SHORT) : ''; 
+               toastShort('用户名不能为空...'); 
                return;
            }
            if(password === ''){
-               (Platform.OS === 'android') ? ToastAndroid.show('密码不能为空...',ToastAndroid.SHORT) : ''; 
+               toastShort('密码不能为空...');
                return;
            }
            this.getLoading().show();
@@ -73,18 +74,18 @@ class Login extends Component {
                  this.getLoading().dismiss(); 
                  if(result.code === '0'){
                      //登录成功..
-                     (Platform.OS === 'android') ? ToastAndroid.show('登录成功...',ToastAndroid.SHORT) : '';  
+                     toastShort('登录成功...'); 
                      NaviGoBack(navigator);
                  }else{
-                     (Platform.OS === 'android') ? ToastAndroid.show(result.msg,ToastAndroid.SHORT) : ''; 
+                     toastShort(result.msg);
                  }
               }).catch((error) => {
                 this.getLoading().dismiss();  
-                (Platform.OS === 'android') ? ToastAndroid.show('网络连接异常',ToastAndroid.SHORT) : '';  
+                toastShort('网络连接异常...');
               });
              },(error)=>{
                this.getLoading().dismiss();  
-               (Platform.OS === 'android') ? ToastAndroid.show('密码加密失败...',ToastAndroid.SHORT) : ''; 
+               toastShort('密码加密失败...');
            });
            
       }else if(position === 1){
@@ -211,17 +212,17 @@ class Login extends Component {
 const styles=StyleSheet.create({
     item_layout:{
         backgroundColor:'white',
-        height:45,
+        height:48,
         justifyContent:'center'
     },
     topbar_bg:{
-        height:45,
+        height:48,
         backgroundColor:'black',
         flexDirection:'row'
     },
     topbar_left_item:{
-        width:45,
-        height:45,
+        width:48,
+        height:48,
         alignItems:'center',
         justifyContent:'center'
     },
@@ -236,8 +237,8 @@ const styles=StyleSheet.create({
         alignSelf:'center'
     },
     topbar_right_item:{
-        width:45,
-        height:45,
+        width:48,
+        height:48,
         alignItems:'center',
         justifyContent:'center'
     },

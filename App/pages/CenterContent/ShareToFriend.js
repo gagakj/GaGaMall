@@ -135,7 +135,7 @@ class ShareToFriend extends Component {
   render() {
         return (
              <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-                <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
+                <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
                     <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{marginLeft:10,justifyContent:'center'}}>
                        <Image 
                           style={{width:13,height:20}}
@@ -145,6 +145,7 @@ class ShareToFriend extends Component {
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>分享给好友</Text>   
                     </View>  
+                    <View style={{width:48,height:48}}/>
                 </View>
                 <Modal
                     animationType="fade"

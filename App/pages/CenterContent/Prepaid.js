@@ -76,9 +76,9 @@ class Prepaid extends Component {
   render() {
         return (
              <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-                <View style={{height:50,backgroundColor:'black',flexDirection:'row'}}>
+                <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
                     <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
-                                      style={{width:50,height:50,justifyContent:'center',alignItems:'center'}}>
+                                      style={{width:48,height:48,justifyContent:'center',alignItems:'center'}}>
                        <Image 
                           style={{width:13,height:20}}
                           source={require('../../imgs/ic_center_back.png')}
@@ -87,7 +87,7 @@ class Prepaid extends Component {
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>充值</Text>   
                     </View>  
-                    <View style={{width:50,height:50}}/>
+                    <View style={{width:48,height:48}}/>
                 </View>
                 <View style={{ alignItems: 'center',marginRight:10}}>
                      <GridView

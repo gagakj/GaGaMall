@@ -77,7 +77,7 @@ class Home extends Component {
   render() {
         return (
            <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-              <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
+              <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
                 <View style={{flex:1,justifyContent:'center'}}>
                      <TouchableOpacity onPress={()=>{this.topItemAction(0)}}>
                           <View style={{justifyContent:'flex-start',flexDirection:'row',alignItems:'center'}}>

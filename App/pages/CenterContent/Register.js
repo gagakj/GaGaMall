@@ -93,8 +93,9 @@ class Login extends Component {
   render() {
         return (
              <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-                <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
-                    <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{width:45,height:45,alignItems:'center',justifyContent:'center'}}>
+                <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
+                    <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
+                                      style={{width:48,height:48,alignItems:'center',justifyContent:'center'}}>
                        <Image 
                           style={{width:13,height:20}}
                           source={require('../../imgs/ic_center_back.png')}
@@ -102,7 +103,8 @@ class Login extends Component {
                     </TouchableOpacity>  
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>注册</Text>   
-                    </View>  
+                    </View> 
+                    <View style={{width:48,height:48}}/> 
                 </View>
                 <View style={{backgroundColor:'white',marginTop:13}}>
                     <View style={{flexDirection:'row',height:45,alignItems:'center'}}>
@@ -157,7 +159,7 @@ class Login extends Component {
 const styles=StyleSheet.create({
     item_layout:{
         backgroundColor:'white',
-        height:45,
+        height:48,
         justifyContent:'center'
     }
 });

@@ -76,8 +76,9 @@ class Setting extends Component {
   render() {
         return (
              <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-                <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
-                    <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{marginLeft:10,justifyContent:'center'}}>
+                <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
+                    <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
+                                     style={{justifyContent:'center',alignItems:'center',height:48,width:48}}>
                        <Image 
                           style={{width:13,height:20}}
                           source={require('../../imgs/ic_center_back.png')}
@@ -86,6 +87,7 @@ class Setting extends Component {
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>设置</Text>   
                     </View>  
+                    <View style={{width:48,height:48}}/>
                 </View>
                 <View style={{flexDirection:'column',flex:1,marginTop:10}}>
                     <SettingItem title="更改密码" onPress={()=>{this.itemButtonAction(2)}}/>
@@ -118,7 +120,7 @@ class Setting extends Component {
 const styles=StyleSheet.create({
     item_layout:{
         backgroundColor:'white',
-        height:45,
+        height:48,
         justifyContent:'center'
     }
 });

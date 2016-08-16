@@ -108,7 +108,7 @@ class Charge extends Component {
   }
   renderFooter() {
     return (
-        <View style={{height: 55,backgroundColor:'#f5f5f5'}}>
+        <View style={{height:55,backgroundColor:'#f5f5f5'}}>
            <TouchableOpacity onPress={()=>{this.addChargeAction()}}>
                <View style={{ height: 45, flexDirection: 'row',backgroundColor:'white',marginTop:10}}>
                  <Image source={require('../../imgs/ic_card_icon.png')} style={{marginLeft:10,width:24,height:18,alignSelf:'center'}}/>
@@ -127,8 +127,9 @@ class Charge extends Component {
   render() {
         return (
              <View style={{backgroundColor:'#f5f5f5',flex:1}}>
-                <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
-                    <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{marginLeft:10,justifyContent:'center'}}>
+                <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
+                    <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
+                                      style={{width:48,height:48,alignItems:'center',justifyContent:'center'}}>
                        <Image 
                           style={{width:13,height:20}}
                           source={require('../../imgs/ic_center_back.png')}
@@ -136,7 +137,8 @@ class Charge extends Component {
                     </TouchableOpacity>  
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>信用卡管理</Text>   
-                    </View>  
+                    </View> 
+                    <View style={{width:48,height:48}}/> 
                 </View>
                 <View >
                      {this.renderContent(this.state.dataSource.cloneWithRows(

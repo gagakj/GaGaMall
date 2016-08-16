@@ -165,8 +165,8 @@ class StoreList extends React.Component {
   render() {
     return (
        <View style={{backgroundColor:'#fff',flex:1}}>
-          <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
-                <View style={{width:45,height:45,justifyContent:'center'}}>
+          <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
+                <View style={{width:48,height:48,justifyContent:'center'}}>
                      <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{justifyContent:'center',alignItems:'center'}} >
                            <Image 
                                  style={{width:13,height:20}}
@@ -177,7 +177,7 @@ class StoreList extends React.Component {
                 <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
                      <Text style={{color:'white'}}>商家列表</Text>
                 </View>
-                <View style={{width:45,height:45,justifyContent:'flex-end',alignItems:'center',flexDirection:'row'}}>
+                <View style={{width:48,height:48,justifyContent:'flex-end',alignItems:'center',flexDirection:'row'}}>
                     <TouchableOpacity onPress={()=>{this.topItemAction(0)}}>
                          <Image source={require('../imgs/home/ic_home_top_search.png')} 
                            style={{width:24,height:24,marginRight:8,alignItems:'center'}}/>

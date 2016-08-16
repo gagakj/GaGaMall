@@ -37,8 +37,9 @@ class OrderSingle extends React.Component {
     const {navigator,route} = this.props;
     return (
        <View style={{backgroundColor:'#fff',flex:1}}>
-          <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
-                <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{marginLeft:10,justifyContent:'center'}}>
+          <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
+                <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
+                                  style={{width:48,height:48,alignItems:'center',justifyContent:'center'}}>
                     <Image 
                           style={{width:13,height:20}}
                           source={require('../imgs/ic_center_back.png')}
@@ -47,6 +48,7 @@ class OrderSingle extends React.Component {
                 <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                     <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>{route.order.shopName}</Text>   
                 </View>  
+                <View style={{width:48,height:48}}/>
           </View>
           <ScrollableTabView
                 renderTabBar={() => <DefaultTabBar/>}
