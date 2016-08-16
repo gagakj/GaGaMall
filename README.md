@@ -9,13 +9,13 @@ React Native开发嘎嘎商城客户端-来自[江清清的技术专栏](http://
 
 ####一.依赖组件
 ###### [1.rn-viewpager](https://github.com/zbtang/React-Native-ViewPager)
-###### [2.react-native-scrollable-tab-view](https://github.com/skv-headless/react-native-scrollable-tab-view)
-###### [3.react-native-swiper](https://github.com/leecade/react-native-swiper)
-###### [4.react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
-###### [5.react-native-tab-navigator](https://github.com/exponentjs/react-native-tab-navigator)
-###### [6.leancloud-storage](https://leancloud.cn/docs/)
-###### [7.react-native-storage](https://github.com/sunnylqm/react-native-storage)
-###### [8.react-native-parallax-scroll-view](https://github.com/jaysoo/react-native-parallax-scroll-view)
+###### [2.react-native-tab-navigator](https://github.com/exponentjs/react-native-tab-navigator)
+###### [3.leancloud-storage](https://leancloud.cn/docs/)
+###### [4.react-native-storage](https://github.com/sunnylqm/react-native-storage)
+###### [5.react-native-parallax-scroll-view](https://github.com/jaysoo/react-native-parallax-scroll-view)
+###### [6.react-native-wechat](https://github.com/weflex/react-native-wechat)
+###### [7.react-native-root-toast](https://github.com/magicismight/react-native-root-toast)
+
 
 ####二.安装配置
 #####1.第一步
@@ -37,6 +37,9 @@ Mac OS X:react-native run-android  or Windows OS:react-native start and react-na
 2.运行iOS版本
 Mac OS X:react-native run-ios or  xcode open project and run project
 ```
+#####5.微信好友朋友圈分享提醒
+必须应用进行打包才可以测试,请查看相关开发教程[RN实现微信好友/朋友圈分享](http://www.lcode.org/?p=1776)
+
 ####三.运行效果
 #####整体效果
 ![个人中心](./screenshot/demo_center.gif) 

@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.chinaztt.encapsulation.EncryptionReactPackager;
-import com.remobile.toast.RCTToastPackage;
+import com.theweflex.react.WeChatPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -28,7 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new EncryptionReactPackager(),
-          new RCTToastPackage()
+              new WeChatPackage()
       );
     }
   };
