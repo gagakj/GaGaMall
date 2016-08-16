@@ -15,13 +15,10 @@ import { NaviGoBack } from '../../utils/CommonUtils';
 import { toastShort } from '../../utils/ToastUtil';
 const shareIconWechat = require('../..//imgs/share_icon_wechat.png');
 const shareIconMoments = require('../../imgs/share_icon_moments.png');
-var WeChat=require('react-native-wechat');
 
 class ShareToFriend extends Component {
   constructor(props) {
       super(props);
-      //微信应用注册
-      WeChat.registerApp('wx331c28ad7ffd35b0');
       this.buttonBackAction=this.buttonBackAction.bind(this);    
       this.buttonOtherShare=this.buttonOtherShare.bind(this);
       this.state={
