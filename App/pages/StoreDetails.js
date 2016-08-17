@@ -9,32 +9,45 @@ import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
-import ParallaxScrollView from 'react-native-parallax-scroll-view';
+
 import { NaviGoBack } from '../utils/CommonUtils';
 import { STORE_DETAILS_DATA } from '../common/VirtualData';
-import ListContainer from '../component/ListContainer';
+import {formatStore} from '../utils/StoreFormat';
+import PureListView from '../component/PureListView';
+import { toastShort } from '../utils/ToastUtil';
 
 const {height,width} = Dimensions.get('window');
 
 class StoreDetails extends Component {
-  
   constructor(props) {
       super(props);
       this.buttonBackAction=this.buttonBackAction.bind(this);
+      this.topItemAction=this.topItemAction.bind(this);
       this.onPressItemLeft=this.onPressItemLeft.bind(this);
+      this.onPressItemRight=this.onPressItemRight.bind(this);
       this.renderItemLeft = this.renderItemLeft.bind(this); 
+      this.renderItemRight=this.renderItemRight.bind(this);
       this.state={
          dataSource: new ListView.DataSource({
+           getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
+           getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
            rowHasChanged: (row1, row2) => row1 !== row2,
-           sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+           sectionHeaderHasChanged: (s1, s2) => s1 !== s2
          }),
          LEFT_ITEMS : eval(STORE_DETAILS_DATA).data.food_spu_tags,
+         RIGHT_ITEMS :formatStore(eval(STORE_DETAILS_DATA).data),
       }
   }
+  componentDidMount() {
+  }
+  
     //返回
   buttonBackAction(){
       const {navigator} = this.props;
       return NaviGoBack(navigator);
+  }
+  topItemAction(){
+     
   }
   /**
    * Render a separator between rows
@@ -48,7 +61,12 @@ class StoreDetails extends Component {
   onPressItemLeft(data){
       
   }
-  //进行渲染数据
+  //点击右侧列表每一项相应按钮
+  onPressItemRight(data){
+      toastShort('点击右侧列表Item...');
+  }
+  
+  //进行渲染左侧列表数据-商品分类
   renderContentLeft(dataSource) {
     return (
       <ListView
@@ -58,10 +76,32 @@ class StoreDetails extends Component {
         style={{flex:1}}
         onEndReachedThreshold={10}
         enableEmptySections={true}
+        showsVerticalScrollIndicator={false}
         renderSeparator={this._renderSeparatorView}
       />
     );
    }
+   //渲染右侧商品列表(带有section) 
+  renderContentRight(dataSource) {
+    return (
+      <ListView 
+        dataSource={dataSource}
+        renderRow={this.renderItemRight}
+        style={{flex:1}}
+        showsVerticalScrollIndicator={false}
+        renderSectionHeader={this._renderSectionHeader}
+      />
+    );
+   }
+
+  _renderSectionHeader(sectionData, sectionID){
+     return(
+        <View key={sectionID} style={{backgroundColor:'#eee',height:25,justifyContent:'center'}}>
+             <Text style={{marginLeft:8,fontSize:11}}>{sectionID}</Text>
+        </View>
+     );   
+  } 
+
   //渲染每一项的数据
   renderItemLeft(data) {
     return (
@@ -74,10 +114,50 @@ class StoreDetails extends Component {
       </View>
     );
   }
-  stickyHeaderView(){
+
+  renderItemImage(data){
+     if(data.picture === ''){
+       return ( 
+            <Image source={require('../imgs/ic_center_icon.png')} style={styles.item_image} /> 
+         )
+     } else {
+       return (
+         <Image source={{uri:data.picture}} style={styles.item_image} />
+         )
+     }
+  }
+  renderItemRight(data) {
     return (
-       <View style={{height:45,backgroundColor:'black',flexDirection:'row'}}>
-                <View style={{width:45,height:45,justifyContent:'center'}}>
+      <TouchableOpacity onPress={()=>{this.onPressItemRight(data)}}>
+           <View style={{backgroundColor:'white',flexDirection:'row'}}>
+                {this.renderItemImage(data)}
+                <View style={{flex:1,marginTop:10,marginBottom:10}}>
+                     <Text style={{marginRight:8,color:'black'}}>{data.name}</Text>
+                     <View style={{flexDirection:'row',marginTop:5}}>
+                            <Text style={{fontSize:10,color:'#aaa'}}>{data.month_saled_content}</Text> 
+                            <Text style={{marginLeft:10,fontSize:11,color:'#aaa'}}>{data.praise_content}</Text> 
+                     </View>
+                     <Text style={{color:'red',fontSize:15,marginTop:5}}>¥{data.min_price}</Text>
+                </View>
+                <View style={{justifyContent:'flex-end'}}>
+                     <TouchableOpacity style={{width:30,height:30,marginRight:10,marginBottom:10}}
+                          onPress={()=>{
+                                  toastShort('点击添加购物车图标...');
+                          }}
+                          >
+                          <Image source={require('../imgs/store/ic_store_add.png')} 
+                                 style={{width:20,height:20}}/>
+                     </TouchableOpacity>        
+                </View>
+           </View>
+      </TouchableOpacity>
+    );
+  }
+  //渲染顶部头布局
+  renderTopLayout(){
+     return (
+       <View style={{height:48,backgroundColor:'black',flexDirection:'row'}}>
+                <View style={{width:48,height:48,justifyContent:'center'}}>
                      <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{justifyContent:'center',alignItems:'center'}} >
                            <Image 
                                  style={{width:13,height:20}}
@@ -88,29 +168,22 @@ class StoreDetails extends Component {
                 <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
                      <Text style={{color:'white'}}>商家列表</Text>
                 </View>
-                <View style={{width:45,height:45,justifyContent:'flex-end',alignItems:'center',flexDirection:'row'}}>
-                    <TouchableOpacity onPress={()=>{this.topItemAction(0)}}>
+                <View style={{width:48,height:48,justifyContent:'flex-end',alignItems:'center',flexDirection:'row'}}>
+                    <TouchableOpacity onPress={()=>{this.topItemAction()}}>
                          <Image source={require('../imgs/home/ic_home_top_search.png')} 
                            style={{width:24,height:24,marginRight:8,alignItems:'center'}}/>
                     </TouchableOpacity>
                 </View>  
           </View>
-    );
+     );
   }
-  render() {
-    const {navigator,route} = this.props;
-    let profilePicture=(
+  //渲染商家基本信息布局
+  renderStoreBaisc(){
+     const {navigator,route} = this.props; 
+     return (
        <View style={{height: PARALLAX_HEADER_HEIGHT, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../imgs/store/ic_store_top_bg.png')} style={{width:width,height:PARALLAX_HEADER_HEIGHT}}>
-                <View style={{width:45,height:45,justifyContent:'center'}}>
-                     <TouchableOpacity onPress={() => {this.buttonBackAction()}} style={{justifyContent:'center',alignItems:'center'}} >
-                           <Image 
-                                 style={{width:13,height:20}}
-                                 source={require('../imgs/ic_center_back.png')}
-                           />
-                     </TouchableOpacity>  
-                </View>
-                <View style={{flexDirection:'row',marginLeft:24,height:68,alignItems:'center'}}>
+                <View style={{flexDirection:'row',marginLeft:24,height:68,alignItems:'center',marginTop:12}}>
                      <Image source={require('../imgs/store/ic_store_default.png')} 
                             style={{width:68,height:68,borderRadius:34}}/>
                      <Text style={{color:'white',fontSize:16,marginLeft:26}}>{route.data.name}</Text>
@@ -125,27 +198,31 @@ class StoreDetails extends Component {
                 </View>
             </Image>
         </View>
-    )
+     );
+  }
+  render() {
+    const {navigator,route} = this.props;  
     return (
-      <ListContainer
-        backgroundImage={require('../imgs/store/ic_store_top_bg.png')}
-        backgroundColor='#A8D769'
-        parallaxContent={profilePicture}
-        stickyHeader={this.stickyHeaderView}>
-        <View style={{flex:1}}>
-               {this.renderContentLeft(this.state.dataSource.cloneWithRows(
+       <View style={{flex:1}}>
+         <View>
+          {this.renderTopLayout()}
+          {this.renderStoreBaisc()}
+        </View> 
+          <View style={{flexDirection:'row',flex:1}}>
+                <View style={{flex:1}}>
+                    {this.renderContentLeft(this.state.dataSource.cloneWithRows(
                          this.state.LEFT_ITEMS === undefined ? [] : this.state.LEFT_ITEMS))}
-        </View>
-        <View style={{flex:3}}>
-               
-        </View>     
-    </ListContainer>
-
+                </View>
+               <View style={{flex:3}}>
+                    {this.renderContentRight(this.state.dataSource.cloneWithRowsAndSections(
+                         this.state.RIGHT_ITEMS === undefined ? [] : this.state.RIGHT_ITEMS,Object.keys(this.state.RIGHT_ITEMS)))}
+               </View>   
+        </View>  
+      </View>  
     );
   }
-
 }
-const PARALLAX_HEADER_HEIGHT = 140;
+const PARALLAX_HEADER_HEIGHT = 100;
 const STICKY_HEADER_HEIGHT = 45;
 
 const styles = StyleSheet.create({
@@ -159,6 +236,12 @@ const styles = StyleSheet.create({
   font: {
     fontSize: 12.5,
     color: '#555555'
+  },
+  item_image:{
+    width:60,
+    height:60,
+    margin:10,
+    borderRadius:5
   }
 });
 export default StoreDetails;

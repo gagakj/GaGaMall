@@ -82,7 +82,7 @@ export default class extends Component {
   }
 
   renderSeparator = (sectionID, rowID) =>
-    this.props.needSeparator && <View key={`${sectionID}vs${rowID}`} style={styles.separator} />
+     this.props.needSeparator && <View key={`${sectionID}vs${rowID}`} style={styles.separator} />
 
 }
 

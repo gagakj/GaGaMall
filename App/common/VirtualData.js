@@ -45,7 +45,7 @@ export const CHARGE_DATA={
 };
 
 export const STORE_DETAILS_DATA={
-    "data": {
+    "data":{
         "food_spu_tags": [
             {
                 "tag": "100",
