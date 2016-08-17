@@ -18,6 +18,12 @@ import { toastShort } from '../utils/ToastUtil';
 
 const {height,width} = Dimensions.get('window');
 
+//默认选中的类别
+let defaultIndex = 0;
+
+let defaultColor = '#f5f5f5';  //默认颜色
+let selectedColor = '#fff';  //选中颜色
+
 class StoreDetails extends Component {
   constructor(props) {
       super(props);
@@ -34,8 +40,8 @@ class StoreDetails extends Component {
            rowHasChanged: (row1, row2) => row1 !== row2,
            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
          }),
-         LEFT_ITEMS : eval(STORE_DETAILS_DATA).data.food_spu_tags,
          RIGHT_ITEMS :formatStore(eval(STORE_DETAILS_DATA).data),
+         selectedMap:{}
       }
   }
   componentDidMount() {
@@ -59,7 +65,7 @@ class StoreDetails extends Component {
   }
   //点击列表每一项响应按钮
   onPressItemLeft(data){
-      
+      toastShort('点击左侧列表Item...');
   }
   //点击右侧列表每一项相应按钮
   onPressItemRight(data){
@@ -104,15 +110,27 @@ class StoreDetails extends Component {
 
   //渲染每一项的数据
   renderItemLeft(data) {
-    return (
-      <View style={{backgroundColor:'white'}}>
-      <TouchableOpacity onPress={()=>{this.onPressItemLeft(data)}}>
-          <View style={{flexDirection:'row',alignItems:'center',height:55,flex:1}}>
-                <Text style={{marginLeft:8,marginRight:8,flex:1}}>{data.name}</Text>
-          </View>
-      </TouchableOpacity>
-      </View>
-    );
+    if(defaultIndex === 0){
+      return (
+          <View style={{backgroundColor:selectedColor}}>
+                <TouchableOpacity onPress={()=>{this.onPressItemLeft(data)}}>
+                      <View style={{flexDirection:'row',alignItems:'center',height:55,flex:1}}>
+                            <Text style={{marginLeft:8,marginRight:8,flex:1}}>{data}</Text>
+                      </View>
+                </TouchableOpacity>
+         </View>
+      );
+    }else{
+      return (
+          <View style={{backgroundColor:defaultColor}}>
+                <TouchableOpacity onPress={()=>{this.onPressItemLeft(data)}}>
+                      <View style={{flexDirection:'row',alignItems:'center',height:55,flex:1}}>
+                            <Text style={{marginLeft:8,marginRight:8,flex:1}}>{data}</Text>
+                      </View>
+                </TouchableOpacity>
+         </View>
+      );
+    }
   }
 
   renderItemImage(data){
@@ -210,8 +228,10 @@ class StoreDetails extends Component {
         </View> 
           <View style={{flexDirection:'row',flex:1}}>
                 <View style={{flex:1}}>
-                    {this.renderContentLeft(this.state.dataSource.cloneWithRows(
-                         this.state.LEFT_ITEMS === undefined ? [] : this.state.LEFT_ITEMS))}
+                    {
+                      this.renderContentLeft(this.state.dataSource.cloneWithRows(
+                         Object.keys(this.state.RIGHT_ITEMS) === undefined ? [] : Object.keys(this.state.RIGHT_ITEMS)))
+                    }
                 </View>
                <View style={{flex:3}}>
                     {this.renderContentRight(this.state.dataSource.cloneWithRowsAndSections(

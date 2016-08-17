@@ -13,6 +13,7 @@
     "react-native-encryption-library": "^1.0.9",
     "react-native-parallax-scroll-view": "^0.19.0",
     "react-native-root-toast": "^1.0.3",
+    "react-native-scrollable-tab-view": "^0.5.3",
     "react-native-storage": "^0.1.2",
     "react-native-tab-navigator": "^0.3.2",
     "react-native-wechat": "^1.5.3",
