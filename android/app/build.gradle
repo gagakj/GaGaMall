@@ -135,6 +135,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-wechat')
+    compile project(':react-native-vector-icons')
     compile project(':react-native-encryption-library')
     compile project(':RCTWeChat')
     compile fileTree(dir: "libs", include: ["*.jar"])

@@ -8,7 +8,7 @@ import {
   ListView,
   TouchableOpacity,
   StyleSheet,
-  PixelRatio,
+  InteractionManager
 } from 'react-native';
 
 import { NaviGoBack } from '../utils/CommonUtils';
@@ -16,6 +16,8 @@ import { STORE_DETAILS_DATA } from '../common/VirtualData';
 import {formatStore,calculateGood} from '../utils/StoreFormat';
 import PureListView from '../component/PureListView';
 import { toastShort } from '../utils/ToastUtil';
+import GoodDetails from './GoodDetails';
+import Merchants from './Merchants';
 
 const {height,width} = Dimensions.get('window');
 
@@ -35,6 +37,7 @@ class StoreDetails extends Component {
       this.onPressItemRight=this.onPressItemRight.bind(this);
       this.renderItemLeft = this.renderItemLeft.bind(this); 
       this.renderItemRight=this.renderItemRight.bind(this);
+      this.collectAction=this.collectAction.bind(this);
       this.state={
          dataSource: new ListView.DataSource({
            getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
@@ -60,7 +63,16 @@ class StoreDetails extends Component {
       return NaviGoBack(navigator);
   }
   topItemAction(){
-     
+      const {navigator} = this.props;
+       InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: Merchants,
+              name: 'Merchants',
+              });
+        });
+  }
+  collectAction(){
+      toastShort('点击收藏按钮...');
   }
   /**
    * Render a separator between rows
@@ -85,7 +97,14 @@ class StoreDetails extends Component {
   }
   //点击右侧列表每一项相应按钮
   onPressItemRight(data){
-      toastShort('点击右侧列表Item...');
+       const {navigator} = this.props;
+       InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: GoodDetails,
+              name: 'GoodDetails',
+              data
+              });
+        });
   }
   
   //进行渲染左侧列表数据-商品分类
@@ -202,7 +221,7 @@ class StoreDetails extends Component {
                      </TouchableOpacity>  
                 </View>
                 <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                     <Text style={{color:'white'}}>商家列表</Text>
+                     <Text style={{color:'white',fontSize:18}}>商品列表</Text>
                 </View>
                 <View style={{width:48,height:48,justifyContent:'flex-end',alignItems:'center',flexDirection:'row'}}>
                     <TouchableOpacity onPress={()=>{this.topItemAction()}}>
@@ -217,6 +236,7 @@ class StoreDetails extends Component {
   renderStoreBaisc(){
      const {navigator,route} = this.props; 
      return (
+       <TouchableOpacity onPress={()=>{this.topItemAction()}}>
        <View style={{height: PARALLAX_HEADER_HEIGHT, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../imgs/store/ic_store_top_bg.png')} style={{width:width,height:PARALLAX_HEADER_HEIGHT}}>
                 <View style={{flexDirection:'row',marginLeft:24,height:68,alignItems:'center',marginTop:12}}>
@@ -225,7 +245,8 @@ class StoreDetails extends Component {
                      <Text style={{color:'white',fontSize:16,marginLeft:26}}>{route.data.name}</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
-                     <TouchableOpacity style={{flexDirection:'row',marginRight:10,alignItems:'center'}}>
+                     <TouchableOpacity style={{flexDirection:'row',marginRight:10,alignItems:'center'}}
+                         onPress={()=>{this.collectAction()}}>
                          <Image source={require('../imgs/store/ic_store_collection_selected.png')}
                                 style={{width:15,height:13}}
                          />
@@ -234,6 +255,7 @@ class StoreDetails extends Component {
                 </View>
             </Image>
         </View>
+        </TouchableOpacity>
      );
   }
   render() {

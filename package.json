@@ -16,6 +16,7 @@
     "react-native-scrollable-tab-view": "^0.5.3",
     "react-native-storage": "^0.1.2",
     "react-native-tab-navigator": "^0.3.2",
+    "react-native-vector-icons": "^2.0.3",
     "react-native-wechat": "^1.5.3",
     "rn-viewpager": "^1.1.3"
   }
