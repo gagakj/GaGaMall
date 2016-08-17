@@ -7,19 +7,21 @@ import {
   View,
   ListView,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  PixelRatio,
 } from 'react-native';
 
 import { NaviGoBack } from '../utils/CommonUtils';
 import { STORE_DETAILS_DATA } from '../common/VirtualData';
-import {formatStore} from '../utils/StoreFormat';
+import {formatStore,calculateGood} from '../utils/StoreFormat';
 import PureListView from '../component/PureListView';
 import { toastShort } from '../utils/ToastUtil';
 
 const {height,width} = Dimensions.get('window');
 
 //默认选中的类别
-let defaultIndex = 0;
+let selectedItem = '';
+let itemMap = [];
 
 let defaultColor = '#f5f5f5';  //默认颜色
 let selectedColor = '#fff';  //选中颜色
@@ -40,13 +42,18 @@ class StoreDetails extends Component {
            rowHasChanged: (row1, row2) => row1 !== row2,
            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
          }),
-         RIGHT_ITEMS :formatStore(eval(STORE_DETAILS_DATA).data),
-         selectedMap:{}
+         RIGHT_ITEMS : formatStore(eval(STORE_DETAILS_DATA).data),
+         DATA_ITEMS : calculateGood(eval(STORE_DETAILS_DATA).data),
+         selectIndexItem : '',
+         
       }
+      itemMap =Object.keys(this.state.RIGHT_ITEMS);  
+      selectedItem=itemMap[0];
   }
+
   componentDidMount() {
+      this.setState({selectIndexItem:selectedItem});
   }
-  
     //返回
   buttonBackAction(){
       const {navigator} = this.props;
@@ -65,7 +72,16 @@ class StoreDetails extends Component {
   }
   //点击列表每一项响应按钮
   onPressItemLeft(data){
-      toastShort('点击左侧列表Item...');
+      this.setState({selectIndexItem:data});
+      var distance = 0;
+      //开始计算滑动的距离
+      //1.首先计算出当前点击了左侧列表的第几项
+      var index = itemMap.indexOf(data) !== -1 ? itemMap.indexOf(data) : 0 ;
+      //2.根据index索引计算高度
+      for ( var i = 0; i <index; i++){
+         distance += 25 + 84 * this.state.RIGHT_ITEMS[itemMap[i]].length;
+      }
+      this.refs['goodLv'].scrollTo({x:0,y:distance,animated:true});
   }
   //点击右侧列表每一项相应按钮
   onPressItemRight(data){
@@ -90,7 +106,9 @@ class StoreDetails extends Component {
    //渲染右侧商品列表(带有section) 
   renderContentRight(dataSource) {
     return (
-      <ListView 
+      <ListView
+        ref={'goodLv'}
+        initialListSize={this.state.DATA_ITEMS}
         dataSource={dataSource}
         renderRow={this.renderItemRight}
         style={{flex:1}}
@@ -110,7 +128,7 @@ class StoreDetails extends Component {
 
   //渲染每一项的数据
   renderItemLeft(data) {
-    if(defaultIndex === 0){
+    if(data === this.state.selectIndexItem){
       return (
           <View style={{backgroundColor:selectedColor}}>
                 <TouchableOpacity onPress={()=>{this.onPressItemLeft(data)}}>

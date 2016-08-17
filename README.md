@@ -15,6 +15,7 @@ React Native开发嘎嘎商城客户端-来自[江清清的技术专栏](http://
 ###### [5.react-native-parallax-scroll-view](https://github.com/jaysoo/react-native-parallax-scroll-view)
 ###### [6.react-native-wechat](https://github.com/weflex/react-native-wechat)
 ###### [7.react-native-root-toast](https://github.com/magicismight/react-native-root-toast)
+###### [8.react-native-scrollable-tab-view](https://github.com/skv-headless/react-native-scrollable-tab-view)
 
 
 ####二.安装配置
