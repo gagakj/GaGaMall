@@ -7,5 +7,3 @@ include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
 include ':react-native-encryption-library'
 project(':react-native-encryption-library').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-encryption-library/android')
-include ':RCTWeChat'
-project(':RCTWeChat').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-wechat/android')
