@@ -10,11 +10,14 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  ListView,
 } from 'react-native';
 
 import { NaviGoBack } from '../utils/CommonUtils';
 import { toastShort } from '../utils/ToastUtil';
 import ShortLine from '../component/ShortLine';
+import {COMMENT_DATA} from '../common/VirtualData'
+import GridView from '../component/GridView';
 
 var {height, width} = Dimensions.get('window');
 
@@ -23,8 +26,12 @@ class Merchants extends React.Component {
     super(props);
     this.buttonBackAction=this.buttonBackAction.bind(this);    
     this.buttonItemAction=this.buttonItemAction.bind(this);
+    this.renderItem = this.renderItem.bind(this); 
     this.state={
-       
+        dataSource: new ListView.DataSource({
+           rowHasChanged: (row1, row2) => row1 !== row2,
+         }),
+         commentList:eval(COMMENT_DATA).data,
       }
   } 
     //返回
@@ -52,6 +59,9 @@ class Merchants extends React.Component {
       }else if(position === 5){
           //开始点餐
           toastShort('点击点餐...');
+      }else if(position === 6){
+          //点击评论
+          toastShort('点击评论...'); 
       }
   }
   //渲染商家基本信息布局
@@ -164,7 +174,83 @@ class Merchants extends React.Component {
        </View>
      );
   }
+  //渲染底部评论信息模块
+  renderBottomComment(){
+     return (
+       <View style={{flex:1}}>
+        <View style={{height:32,alignItems:'center',flexDirection:'row'}}>
+            <Text style={{marginLeft:10}}>评论信息</Text>
+            <View style={{flex:1,alignItems:'flex-end'}}>
+                  <TouchableOpacity onPress={()=>{this.buttonItemAction(6)}}>
+                       <View style={{flexDirection:'row',height:32,alignItems:'center'}}>
+                            <Text>添加评论</Text>
+                            <Image source={require('../imgs/ic_center_right_arrow.png')} 
+                                   style={{width:12,height:18,marginRight:15}}/>
+                       </View>
+                  </TouchableOpacity>
+            </View>     
+      </View>
 
+      {this.renderContent(this.state.dataSource.cloneWithRows(
+                         this.state.commentList === undefined ? [] : this.state.commentList))}
+      </View>
+     ); 
+  }
+  //进行渲染数据
+  renderContent(dataSource) {
+    return (
+      <ListView
+        initialListSize={1}
+        dataSource={dataSource}
+        renderRow={this.renderItem}
+        style={{backgroundColor:'white',flex:1}}
+        onEndReachedThreshold={10}
+        enableEmptySections={true}
+        renderSeparator={this._renderSeparatorView}
+      />
+    );
+   }
+  /**
+   * Render a separator between rows
+   */
+  _renderSeparatorView(sectionID: number, rowID: number, adjacentRowHighlighted: bool) {
+    return (
+      <View key={`${sectionID}-${rowID}`} style={styles.separator} />
+    );
+  } 
+  //渲染每一项的数据
+  renderItem(comment) {
+    return (
+        <View>
+           <View style={{flexDirection:'row',margin:10}}>
+                <Image source={require('../imgs/store/merchants/ic_comment_icon.png')} style={{width:35,height:35}}/>
+                <View style={{flex:1,marginLeft:8}}>
+                     <Text style={{color:'black',fontSize:15}}>{comment.nickname}</Text>
+                     <Text style={{color:'#777',fontSize:12,marginTop:5}}>{comment.content}</Text>
+                </View>
+                <View style={{marginLeft:5}}><Text style={{color:'#777',fontSize:12}}>{comment.createTime}</Text></View>
+           </View>
+           {this.renderCommentImage(comment.imgs)}
+        </View>
+    );
+  }
+  //渲染图片布局
+  renderCommentImage(imgs){
+     return (
+        <View style={{marginLeft:50,marginBottom:5}}> 
+            <GridView
+             items={Array.from(imgs)}
+             itemsPerRow={3}
+             renderItem={this.renderImageItem}
+            />
+       </View>     
+     );
+  }
+  renderImageItem(rowData) {
+     return (
+        <Image  key={rowData.imgUrl} source={{uri:rowData.imgUrl}} style={{width:70,height:70,margin:5}}/>
+    );
+  }
   render() {
     return (
        <View style={{backgroundColor:'#f5f5f5',flex:1}}>
@@ -183,7 +269,7 @@ class Merchants extends React.Component {
           </View>
           {this.renderStoreBaisc()}
           {this.renderCenterBar()}
-          
+          {this.renderBottomComment()}    
       </View>
     );
   }
@@ -199,6 +285,10 @@ let styles = StyleSheet.create({
         color:'white',
         alignSelf:'center',
         backgroundColor:'#00000000'
-    }
+    },
+    separator: {
+       height: 1,
+       backgroundColor: '#eee'
+   }
 });
 export default Merchants;
