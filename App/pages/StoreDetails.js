@@ -102,7 +102,6 @@ class StoreDetails extends Component {
             navigator.push({
               component: GoodDetails,
               name: 'GoodDetails',
-              data
               });
         });
   }
