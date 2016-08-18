@@ -11,6 +11,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ListView,
+  InteractionManager,
 } from 'react-native';
 
 import { NaviGoBack } from '../utils/CommonUtils';
@@ -18,6 +19,7 @@ import { toastShort } from '../utils/ToastUtil';
 import ShortLine from '../component/ShortLine';
 import {COMMENT_DATA} from '../common/VirtualData'
 import GridView from '../component/GridView';
+import Comment from  './Comment';
 
 var {height, width} = Dimensions.get('window');
 
@@ -41,10 +43,7 @@ class Merchants extends React.Component {
   }
   buttonItemAction(position){
       const {navigator} = this.props;
-      if(position === 0){
-          //评价
-          toastShort('点击评价...');
-      }else if(position === 1){
+      if(position === 1){
           //收藏
           toastShort('点击收藏...');
       }else if(position === 2){
@@ -59,9 +58,14 @@ class Merchants extends React.Component {
       }else if(position === 5){
           //开始点餐
           toastShort('点击点餐...');
-      }else if(position === 6){
+      }else if(position === 6 || position ===0){
           //点击评论
-          toastShort('点击评论...'); 
+          InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: Comment,
+              name: 'Comment'
+            });
+          });
       }
   }
   //渲染商家基本信息布局
@@ -183,7 +187,7 @@ class Merchants extends React.Component {
             <View style={{flex:1,alignItems:'flex-end'}}>
                   <TouchableOpacity onPress={()=>{this.buttonItemAction(6)}}>
                        <View style={{flexDirection:'row',height:32,alignItems:'center'}}>
-                            <Text>添加评论</Text>
+                            <Text style={{fontSize:12}}>添加评论</Text>
                             <Image source={require('../imgs/ic_center_right_arrow.png')} 
                                    style={{width:12,height:18,marginRight:15}}/>
                        </View>
