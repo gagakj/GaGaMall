@@ -29,6 +29,7 @@ class Merchants extends React.Component {
     this.buttonBackAction=this.buttonBackAction.bind(this);    
     this.buttonItemAction=this.buttonItemAction.bind(this);
     this.renderItem = this.renderItem.bind(this); 
+    this.renderHeaderContent = this.renderHeaderContent.bind(this);
     this.state={
         dataSource: new ListView.DataSource({
            rowHasChanged: (row1, row2) => row1 !== row2,
@@ -182,19 +183,6 @@ class Merchants extends React.Component {
   renderBottomComment(){
      return (
        <View style={{flex:1}}>
-        <View style={{height:32,alignItems:'center',flexDirection:'row'}}>
-            <Text style={{marginLeft:10}}>评论信息</Text>
-            <View style={{flex:1,alignItems:'flex-end'}}>
-                  <TouchableOpacity onPress={()=>{this.buttonItemAction(6)}}>
-                       <View style={{flexDirection:'row',height:32,alignItems:'center'}}>
-                            <Text style={{fontSize:12}}>添加评论</Text>
-                            <Image source={require('../imgs/ic_center_right_arrow.png')} 
-                                   style={{width:12,height:18,marginRight:15}}/>
-                       </View>
-                  </TouchableOpacity>
-            </View>     
-      </View>
-
       {this.renderContent(this.state.dataSource.cloneWithRows(
                          this.state.commentList === undefined ? [] : this.state.commentList))}
       </View>
@@ -211,6 +199,7 @@ class Merchants extends React.Component {
         onEndReachedThreshold={10}
         enableEmptySections={true}
         renderSeparator={this._renderSeparatorView}
+        renderHeader={this.renderHeaderContent}
       />
     );
    }
@@ -255,6 +244,27 @@ class Merchants extends React.Component {
         <Image  key={rowData.imgUrl} source={{uri:rowData.imgUrl}} style={{width:70,height:70,margin:5}}/>
     );
   }
+  //渲染ListView的Header布局
+  renderHeaderContent(){
+      return (
+          <View>
+             {this.renderStoreBaisc()}
+             {this.renderCenterBar()}
+             <View style={{height:32,alignItems:'center',flexDirection:'row',backgroundColor:'#f5f5f5'}}>
+                 <Text style={{marginLeft:10}}>评论信息</Text>
+                 <View style={{flex:1,alignItems:'flex-end'}}>
+                      <TouchableOpacity onPress={()=>{this.buttonItemAction(6)}}>
+                            <View style={{flexDirection:'row',height:32,alignItems:'center'}}>
+                                  <Text style={{fontSize:12}}>添加评论</Text>
+                                  <Image source={require('../imgs/ic_center_right_arrow.png')} 
+                                         style={{width:12,height:18,marginRight:15}}/>
+                           </View>
+                      </TouchableOpacity>
+                 </View>     
+            </View>
+          </View>
+      );
+  }
   render() {
     return (
        <View style={{backgroundColor:'#f5f5f5',flex:1}}>
@@ -271,8 +281,6 @@ class Merchants extends React.Component {
                 </View>  
                 <View style={{height:48,width:48}}/>
           </View>
-          {this.renderStoreBaisc()}
-          {this.renderCenterBar()}
           {this.renderBottomComment()}    
       </View>
     );
