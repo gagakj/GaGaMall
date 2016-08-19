@@ -100,11 +100,11 @@ class Login extends Component {
                             placeholderTextColor="#aaaaaa"
                             underlineColorAndroid="transparent"
                             numberOfLines={1}
-                            ref={'username'}
+                            ref={'password'}
                             multiline={true}
                             autoFocus={true}
                             onChangeText={(text) => {
-                               username = text;
+                               password = text;
                             }}
                            />
                           <TouchableOpacity onPress={() => {this.buttonChangeState(0)}} style={{width:45,height:45,alignItems:'center',justifyContent:'center'}}>
