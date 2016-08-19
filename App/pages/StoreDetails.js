@@ -242,6 +242,10 @@ class StoreDetails extends Component {
                      <Image source={require('../imgs/store/ic_store_default.png')} 
                             style={{width:68,height:68,borderRadius:34}}/>
                      <Text style={{color:'white',fontSize:16,marginLeft:26}}>{route.data.name}</Text>
+                     <View style={{flex:1,alignItems:'flex-end',marginRight:15}}>
+                           <Image source={require('../imgs/ic_center_right_arrow.png')} 
+                                         style={{width:12,height:18}}/>
+                     </View>                    
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
                      <TouchableOpacity style={{flexDirection:'row',marginRight:10,alignItems:'center'}}
