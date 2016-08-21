@@ -40,7 +40,7 @@ Mac OS X:react-native run-ios or  xcode open project and run project
 ```
 ####三.套餐教程
 [1.[RN实战-嘎嘎商城]之仿快递时间轴布局实现(订单状态)](http://www.lcode.org/?p=1855)</br>
-[2.[RN实战-嘎嘎商城]之轻松实现Tab底部菜单导航栏切换效果-Android/iOS双适配](http://www.lcode.org/?p=1776)</br>
+[2.[RN实战-嘎嘎商城]之轻松实现Tab底部菜单导航栏切换效果-Android/iOS双适配](http://www.lcode.org/?p=1857)</br>
 [3.[RN实战-嘎嘎商城]之商家详情界面布局分析与实现](http://www.lcode.org/?p=1865)</br>
 
 ####四.运行效果
