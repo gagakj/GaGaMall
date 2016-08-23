@@ -1,5 +1,5 @@
 'use strict';
-import React, {Component} from 'react';
+import React, {Component,PropTypes} from 'react';
 import{ 
     View,
     Text,
@@ -23,7 +23,10 @@ import { toastShort } from '../../utils/ToastUtil';
 import {NativeModules} from 'react-native';
 var EncryptionModule = NativeModules.EncryptionModule;
 
-import Loading from '../../component/Loading';
+import Loading from '../../component/Loading_DD';
+
+import { connect } from 'react-redux';
+import { performLoginAction } from '../../actions/LoginAction'
 
 const client = new FetchHttpClient(HOST);
 
@@ -46,7 +49,7 @@ class Login extends Component {
   }
   //用户登录/注册
   buttonRegisterOrLoginAction(position){
-      const {navigator} = this.props;
+      const {navigator,dispatch} = this.props;
       if(position === 0){
             //用户登录
            if(username === ''){
@@ -56,35 +59,10 @@ class Login extends Component {
            if(password === ''){
                toastShort('密码不能为空...');
                return;
-           }
-           this.getLoading().show();
+           }       
            EncryptionModule.MD5ByCallBack(password,(msg)=>{
-               client.addMiddleware(form());
-                     client.addMiddleware(request => {
-                     request.options.headers['appkey'] = '8a9283a0567d5bea01567d5beaf90000';
-                  });
-              client.post(LOGIN_ACTION, {
-                  form: {
-                    username: username,
-                    password: msg,
-                 },
-              }).then(response => {
-                return response.json();
-              }).then((result)=>{
-                 this.getLoading().dismiss(); 
-                 if(result.code === '0'){
-                     //登录成功..
-                     toastShort('登录成功...'); 
-                     NaviGoBack(navigator);
-                 }else{
-                     toastShort(result.msg);
-                 }
-              }).catch((error) => {
-                this.getLoading().dismiss();  
-                toastShort('网络连接异常...');
-              });
+           dispatch(performLoginAction(username,msg));
              },(error)=>{
-               this.getLoading().dismiss();  
                toastShort('密码加密失败...');
            });
            
@@ -114,12 +92,9 @@ class Login extends Component {
         
   }
 
-  //获取加载进度组件
-  getLoading() {
-    return this.refs['loading'];
-  }
   render() {
-        return (
+      const {login} = this.props;
+      return (
              <View style={{backgroundColor:'#f5f5f5',flex:1}}>
                 <View style={styles.topbar_bg}>
                     <TouchableOpacity onPress={() => {this.buttonBackAction()}} 
@@ -204,7 +179,7 @@ class Login extends Component {
                           </TouchableOpacity>
                     </View>
                 </View>
-                 <Loading ref={'loading'} text={'登录中...'} />
+                <Loading visible={login.loading} />
              </View>
         );
     }
@@ -248,4 +223,12 @@ const styles=StyleSheet.create({
         alignSelf:'center'
     }
 });
-export default Login;
+
+function mapStateToProps(state) {
+  const { login } = state;
+  return {
+    login
+  }
+}
+
+export default connect(mapStateToProps)(Login);
