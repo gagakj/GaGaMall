@@ -8,8 +8,8 @@
   "dependencies": {
     "fetch-http-client": "0.0.3",
     "leancloud-storage": "^1.3.2",
-    "react": "15.2.1",
-    "react-native": "^0.30.0",
+    "react": "15.3.0",
+    "react-native": "^0.33.0",
     "react-native-encryption-library": "^1.0.9",
     "react-native-parallax-scroll-view": "^0.19.0",
     "react-native-root-toast": "^1.0.3",

@@ -18,8 +18,14 @@ import PureListView from '../component/PureListView';
 import { toastShort } from '../utils/ToastUtil';
 import GoodDetails from './GoodDetails';
 import Merchants from './Merchants';
+import Loading from '../component/Loading_DD';
+import LoadingView from '../component/LoadingView';
+
+import { connect } from 'react-redux';
+import { fetchGoodsAction } from '../actions/GoodsAction'
 
 const {height,width} = Dimensions.get('window');
+
 
 //默认选中的类别
 let selectedItem = '';
@@ -30,6 +36,7 @@ let selectedColor = '#fff';  //选中颜色
 
 class StoreDetails extends Component {
   constructor(props) {
+      console.log('constructor...');
       super(props);
       this.buttonBackAction=this.buttonBackAction.bind(this);
       this.topItemAction=this.topItemAction.bind(this);
@@ -38,6 +45,7 @@ class StoreDetails extends Component {
       this.renderItemLeft = this.renderItemLeft.bind(this); 
       this.renderItemRight=this.renderItemRight.bind(this);
       this.collectAction=this.collectAction.bind(this);
+      this.renderBottom=this.renderBottom.bind(this);
       this.state={
          dataSource: new ListView.DataSource({
            getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
@@ -45,15 +53,16 @@ class StoreDetails extends Component {
            rowHasChanged: (row1, row2) => row1 !== row2,
            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
          }),
-         RIGHT_ITEMS : formatStore(eval(STORE_DETAILS_DATA).data),
-         DATA_ITEMS : calculateGood(eval(STORE_DETAILS_DATA).data),
          selectIndexItem : '',
-         
       }
-      itemMap =Object.keys(this.state.RIGHT_ITEMS);  
-      selectedItem=itemMap[0];
-  }
+      selectIndexItem = 'dd'
+  }  
 
+  componentWillMount() {
+     const {dispatch} = this.props;
+     dispatch(fetchGoodsAction());
+  }
+  
   componentDidMount() {
       this.setState({selectIndexItem:selectedItem});
   }
@@ -261,30 +270,41 @@ class StoreDetails extends Component {
         </TouchableOpacity>
      );
   }
+
+ renderBottom(){
+    const {goods} = this.props;  
+    if (goods.loading) {
+          return <LoadingView />;
+      }
+    return (
+        <View style={{flexDirection:'row',flex:1}}>
+                <View style={{flex:1}}>
+                    {
+                      this.renderContentLeft(this.state.dataSource.cloneWithRows(
+                         goods.left_items === undefined ? [] : goods.left_items))
+                    }
+                </View>
+               <View style={{flex:3}}>
+                    {this.renderContentRight(this.state.dataSource.cloneWithRowsAndSections(
+                         goods.right_items === undefined ? [] : goods.right_items,goods.left_items))}
+               </View>   
+        </View>  
+    );   
+ }
+
   render() {
-    const {navigator,route} = this.props;  
     return (
        <View style={{flex:1}}>
          <View>
           {this.renderTopLayout()}
           {this.renderStoreBaisc()}
         </View> 
-          <View style={{flexDirection:'row',flex:1}}>
-                <View style={{flex:1}}>
-                    {
-                      this.renderContentLeft(this.state.dataSource.cloneWithRows(
-                         Object.keys(this.state.RIGHT_ITEMS) === undefined ? [] : Object.keys(this.state.RIGHT_ITEMS)))
-                    }
-                </View>
-               <View style={{flex:3}}>
-                    {this.renderContentRight(this.state.dataSource.cloneWithRowsAndSections(
-                         this.state.RIGHT_ITEMS === undefined ? [] : this.state.RIGHT_ITEMS,Object.keys(this.state.RIGHT_ITEMS)))}
-               </View>   
-        </View>  
+        {this.renderBottom()}  
       </View>  
     );
   }
 }
+
 const PARALLAX_HEADER_HEIGHT = 100;
 const STICKY_HEADER_HEIGHT = 45;
 
@@ -307,4 +327,11 @@ const styles = StyleSheet.create({
     borderRadius:5
   }
 });
-export default StoreDetails;
+
+function mapStateToProps(state) {
+  const { goods } = state;
+  return {
+    goods
+  }
+}
+export default connect(mapStateToProps)(StoreDetails);

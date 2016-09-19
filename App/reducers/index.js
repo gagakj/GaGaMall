@@ -1,7 +1,9 @@
 'use strict';
 import {combineReducers} from 'redux';
-import login from './LoginReducers';
+import login from './LoginReducer';
+import goods from './GoodsReducer';
 const rootReducer = combineReducers({
-      login
+      login,
+      goods
 })
 export default rootReducer;
