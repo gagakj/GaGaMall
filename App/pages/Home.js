@@ -18,6 +18,8 @@ import City from './City';
 import Search from './Search';
 import ShortLine from '../component/ShortLine';
 import StoreDetails from './StoreDetails';
+import WebViewDetails from './WebViewDetails';
+
 var {height, width} = Dimensions.get('window');
 var item_width = (width-1)/2;
 
@@ -101,15 +103,13 @@ class Home extends Component {
       this.recomdStoreAction = this.recomdStoreAction.bind(this);
     }
   centerItemAction(position){
-      if(position === 0){
-          
-      }else if(position === 1){
-
-      }else if(position === 2){
-          
-      }else if(position === 3){
-          
-      }
+      const {navigator} = this.props;   
+      InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: WebViewDetails,
+              name: 'WebViewDetails',
+            });
+      });
   }  
   recomdStoreAction(position){
       const {navigator} = this.props;   
@@ -219,6 +219,7 @@ class Home extends Component {
              <View style={{marginTop:8,backgroundColor:'white'}}>
                   <View style={{height:40,justifyContent:'center',alignItems:'center'}}><Text>推荐活动</Text></View>
                   <View style={{flexDirection:'row',height:70}}>
+                        <TouchableOpacity onPress={()=>{this.centerItemAction(0)}}>
                         <View style={{flexDirection:'row',width:item_width,marginTop:5}}>
                               <Image source={CENTER_IMGS[4]} style={{width:66,height:47,marginLeft:20}}/>
                               <View style={{marginLeft:10}}>
@@ -227,7 +228,9 @@ class Home extends Component {
                               </View>
                                                     
                         </View>
+                        </TouchableOpacity>
                         <Image source={require('../imgs/home/ic_home_shu.png')} style={{height:60,marginTop:10}}/>
+                        <TouchableOpacity onPress={()=>{this.centerItemAction(1)}}>
                         <View style={{flexDirection:'row',width:item_width,marginTop:8}}>
                               <Image source={CENTER_IMGS[5]} style={{width:40,height:53,marginLeft:20}}/>
                               <View style={{marginLeft:10}}>
@@ -236,6 +239,7 @@ class Home extends Component {
                               </View>
                                                     
                         </View>
+                        </TouchableOpacity>
                   </View>
                   <ShortLine/>
                   <View style={{flexDirection:'row',height:70}}>
