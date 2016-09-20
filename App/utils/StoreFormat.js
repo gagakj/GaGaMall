@@ -14,6 +14,14 @@ export function formatStore(storeData){
        return goodTagMap;
 }
 
+export function calculateLength(storeData){
+        let length = 0;
+        storeData.food_spu_tags.forEach(spu_tag => {
+            length += spu_tag.length;
+       })
+       return length;
+}
+
 export function calculateGood(storeData){
         let value = 0;
         storeData.food_spu_tags.forEach(spu_tag => {

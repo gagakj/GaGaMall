@@ -22,21 +22,15 @@ import Loading from '../component/Loading_DD';
 import LoadingView from '../component/LoadingView';
 
 import { connect } from 'react-redux';
-import { fetchGoodsAction } from '../actions/GoodsAction'
+import { fetchGoodsAction,changeCategoryAction} from '../actions/GoodsAction'
 
 const {height,width} = Dimensions.get('window');
-
-
-//默认选中的类别
-let selectedItem = '';
-let itemMap = [];
 
 let defaultColor = '#f5f5f5';  //默认颜色
 let selectedColor = '#fff';  //选中颜色
 
 class StoreDetails extends Component {
   constructor(props) {
-      console.log('constructor...');
       super(props);
       this.buttonBackAction=this.buttonBackAction.bind(this);
       this.topItemAction=this.topItemAction.bind(this);
@@ -53,19 +47,15 @@ class StoreDetails extends Component {
            rowHasChanged: (row1, row2) => row1 !== row2,
            sectionHeaderHasChanged: (s1, s2) => s1 !== s2
          }),
-         selectIndexItem : '',
       }
-      selectIndexItem = 'dd'
   }  
 
   componentWillMount() {
      const {dispatch} = this.props;
+     //开始加载商品列表数据
      dispatch(fetchGoodsAction());
   }
   
-  componentDidMount() {
-      this.setState({selectIndexItem:selectedItem});
-  }
     //返回
   buttonBackAction(){
       const {navigator} = this.props;
@@ -93,15 +83,17 @@ class StoreDetails extends Component {
   }
   //点击列表每一项响应按钮
   onPressItemLeft(data){
-      this.setState({selectIndexItem:data});
+      const {goods,dispatch} = this.props;  
+      dispatch(changeCategoryAction(data));
       var distance = 0;
       //开始计算滑动的距离
       //1.首先计算出当前点击了左侧列表的第几项
-      var index = itemMap.indexOf(data) !== -1 ? itemMap.indexOf(data) : 0 ;
+      var index = goods.left_items.indexOf(data);
       //2.根据index索引计算高度
       for ( var i = 0; i <index; i++){
-         distance += 25 + 84 * this.state.RIGHT_ITEMS[itemMap[i]].length;
+         distance += 25 + 84 * goods.right_items[goods.left_items[i]].length;
       }
+      
       this.refs['goodLv'].scrollTo({x:0,y:distance,animated:true});
   }
   //点击右侧列表每一项相应按钮
@@ -117,6 +109,7 @@ class StoreDetails extends Component {
   
   //进行渲染左侧列表数据-商品分类
   renderContentLeft(dataSource) {
+    
     return (
       <ListView
         initialListSize={1}
@@ -132,10 +125,11 @@ class StoreDetails extends Component {
    }
    //渲染右侧商品列表(带有section) 
   renderContentRight(dataSource) {
+    const {goods} = this.props;  
     return (
       <ListView
         ref={'goodLv'}
-        initialListSize={this.state.DATA_ITEMS}
+        initialListSize={goods.data_length}
         dataSource={dataSource}
         renderRow={this.renderItemRight}
         style={{flex:1}}
@@ -155,7 +149,8 @@ class StoreDetails extends Component {
 
   //渲染每一项的数据
   renderItemLeft(data) {
-    if(data === this.state.selectIndexItem){
+    const {goods} = this.props;  
+    if(data === goods.selectedItem){
       return (
           <View style={{backgroundColor:selectedColor}}>
                 <TouchableOpacity onPress={()=>{this.onPressItemLeft(data)}}>
