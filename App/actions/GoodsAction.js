@@ -13,10 +13,9 @@ export function fetchGoodsAction(){
      return dispatch => {
         dispatch(dispatchGoodsAction());
         var right_items = formatStore(eval(STORE_DETAILS_DATA).data);
-        var data_items = calculateGood(eval(STORE_DETAILS_DATA).data);
         var left_items = Object.keys(right_items);
         var data_length = calculateLength(eval(STORE_DETAILS_DATA).data);
-        dispatch(receiveGoodsAction(left_items,right_items,data_items,data_length));
+        dispatch(receiveGoodsAction(left_items,right_items,data_length));
      }
 }
 
@@ -34,12 +33,11 @@ function dispatchGoodsAction() {
         }
 }
 //获取到数据
-function receiveGoodsAction(left_items,right_items,data_items,data_length){
+function receiveGoodsAction(left_items,right_items,data_length){
         return {
             type: types.RECEIVE_GOODS_ACTION,
             left_items : left_items,
             right_items : right_items,
-            data_items : data_items,
             selectedItem : left_items[0],
             data_length : data_length
         }

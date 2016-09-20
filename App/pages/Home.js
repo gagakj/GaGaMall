@@ -17,6 +17,7 @@ import {IndicatorViewPager, PagerDotIndicator} from 'rn-viewpager';
 import City from './City';
 import Search from './Search';
 import ShortLine from '../component/ShortLine';
+import StoreDetails from './StoreDetails';
 var {height, width} = Dimensions.get('window');
 var item_width = (width-1)/2;
 
@@ -36,11 +37,68 @@ const CENTER_IMGS = [
     require('../imgs/home/img_7.png'),  
     require('../imgs/home/img_8.png')    
 ];
+const STORE_DATA={
+    "api":"GetStoreList",
+    "v":"1.0",
+    "code":"0",
+    "msg":"success",
+    "data":[{
+        "id":1,
+        "name":"四川Brunch",
+        "star":4,
+        "comment":45,
+        "tag":"中国餐馆,四川菜,重辣",
+        "location":"6.6km",
+        "remark":"每日有优惠"
+    },{
+        "id":2,
+        "name":"聚星楼",
+        "star":4,
+        "comment":45,
+        "tag":"中国餐馆,四川菜,重辣",
+        "location":"6.6km",
+        "remark":"每日有优惠"
+    },{
+        "id":3,
+        "name":"四川川二娃",
+        "star":4,
+        "comment":45,
+        "tag":"中国餐馆,四川菜,重辣",
+        "location":"6.6km",
+        "remark":"每日有优惠"
+    },{
+        "id":4,
+        "name":"韩国大烤肉",
+        "star":4,
+        "comment":45,
+        "tag":"中国餐馆,四川菜,重辣",
+        "location":"6.6km",
+        "remark":"每日有优惠"
+    },{
+        "id":5,
+        "name":"釜山料理",
+        "star":4,
+        "comment":45,
+        "tag":"中国餐馆,四川菜,重辣",
+        "location":"6.6km",
+        "remark":"每日有优惠"
+    },{
+        "id":6,
+        "name":"釜山料理",
+        "star":4,
+        "comment":45,
+        "tag":"中国餐馆,四川菜,重辣",
+        "location":"6.6km",
+        "remark":"每日有优惠"
+    }
+]
+};
 class Home extends Component {
    constructor(props) {
       super(props);
       this.centerItemAction=this.centerItemAction.bind(this);
       this.topItemAction=this.topItemAction.bind(this);
+      this.recomdStoreAction = this.recomdStoreAction.bind(this);
     }
   centerItemAction(position){
       if(position === 0){
@@ -53,6 +111,16 @@ class Home extends Component {
           
       }
   }  
+  recomdStoreAction(position){
+      const {navigator} = this.props;   
+       InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+              component: StoreDetails,
+              name: 'StoreDetails',
+              data: eval(STORE_DATA.data[position])
+            });
+          });
+  }
   topItemAction(position){
       const {navigator} = this.props;
       if(position === 0){
@@ -193,7 +261,7 @@ class Home extends Component {
                      <View style={{height:40,justifyContent:'center',alignItems:'center'}}><Text>推荐商家</Text></View>
                      <View style={{flexDirection:'row'}}>
                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                               <TouchableOpacity>
+                               <TouchableOpacity onPress={()=>{this.recomdStoreAction(0)}}>
                                   <Image source={require('../imgs/home/img.png')} style={{width:105,height:105}}/>
                                   <View style={{marginTop:8,justifyContent:'center',alignItems:'center'}}>
                                         <Text>叶书 master</Text>
@@ -201,7 +269,7 @@ class Home extends Component {
                                </TouchableOpacity>
                            </View>
                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                               <TouchableOpacity>
+                               <TouchableOpacity onPress={()=>{this.recomdStoreAction(1)}}>
                                   <Image source={require('../imgs/home/img.png')} style={{width:105,height:105}}/>
                                   <View style={{marginTop:8,justifyContent:'center',alignItems:'center'}}>
                                         <Text>微餐咖啡</Text>
@@ -209,7 +277,7 @@ class Home extends Component {
                                </TouchableOpacity>
                            </View>
                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                               <TouchableOpacity>
+                               <TouchableOpacity onPress={()=>{this.recomdStoreAction(2)}}>
                                   <Image source={require('../imgs/home/img.png')} style={{width:105,height:105}}/>
                                   <View style={{marginTop:8,justifyContent:'center',alignItems:'center'}}>
                                         <Text>多伦多海鲜自助</Text>
@@ -219,7 +287,7 @@ class Home extends Component {
                      </View>
                      <View style={{flexDirection:'row',marginTop:10,paddingBottom:10}}>
                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                               <TouchableOpacity>
+                               <TouchableOpacity onPress={()=>{this.recomdStoreAction(3)}}>
                                   <Image source={require('../imgs/home/img.png')} style={{width:105,height:105}}/>
                                   <View style={{marginTop:8,justifyContent:'center',alignItems:'center'}}>
                                         <Text>叶书 master</Text>
@@ -227,7 +295,7 @@ class Home extends Component {
                                </TouchableOpacity>
                            </View>
                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                               <TouchableOpacity>
+                               <TouchableOpacity onPress={()=>{this.recomdStoreAction(4)}}>
                                   <Image source={require('../imgs/home/img.png')} style={{width:105,height:105}}/>
                                   <View style={{marginTop:8,justifyContent:'center',alignItems:'center'}}>
                                         <Text>微餐咖啡</Text>
@@ -235,7 +303,7 @@ class Home extends Component {
                                </TouchableOpacity>
                            </View>
                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                               <TouchableOpacity>
+                               <TouchableOpacity onPress={()=>{this.recomdStoreAction(5)}}>
                                   <Image source={require('../imgs/home/img.png')} style={{width:105,height:105}}/>
                                   <View style={{marginTop:8,justifyContent:'center',alignItems:'center'}}>
                                         <Text>多伦多海鲜自助</Text>

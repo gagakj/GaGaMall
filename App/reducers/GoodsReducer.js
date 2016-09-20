@@ -8,7 +8,6 @@ const initialState = {
     loading : false,
     left_items : [],
     right_items : [],
-    data_items : [],
     data_length : 0,
     selectedItem : '',
 }
@@ -25,7 +24,6 @@ export default function goods(state = initialState, action){
                        loading: false,
                        left_items: action.left_items,
                        right_items: action.right_items,
-                       data_items: action.data_items,
                        selectedItem : action.selectedItem,
                        data_length : action.data_length
                   });
