@@ -49,7 +49,7 @@ class Language extends Component {
                     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                        <Text style={{fontSize:18,color:'white',alignSelf:'center'}}>语言切换</Text>   
                     </View>  
-                    <View style={{white:48,height:48}}/>
+                    <View style={{width:48,height:48}}/>
                 </View>
                 <LanguageItem title="简体中文(Simple Chinease)" 
                               onPress={()=>{this.itemButtonAction(0)}} 

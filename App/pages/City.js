@@ -90,9 +90,9 @@ class City extends React.Component {
           <View style={{justifyContent:'center'}}>
                 <Image source={CITY_IMGS[city.cityId]} style={{width:width,height:140}}>
                        <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-                             <Text style={{color:'white',fontSize:19}}>{city.cityName}</Text>
+                             <Text style={{color:'white',fontSize:19, backgroundColor: 'rgba(1, 1, 1, 0)'}}>{city.cityName}</Text>
                              {city.isBegin?
-                                null:<Text style={{color:'white',fontSize:18}}>coming soon...</Text>
+                                null:<Text style={{color:'white',fontSize:18, backgroundColor: 'rgba(1, 1, 1, 0)'}}>coming soon...</Text>
                                 }
                        </View>
                 </Image>
