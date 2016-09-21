@@ -79,30 +79,30 @@ class Merchants extends React.Component {
                      <Image source={require('../imgs/store/merchants/ic_merchants_icon.png')} 
                             style={{width:68,height:68,borderRadius:34}}/>
                      <View style={{marginLeft:15}}>
-                           <Text style={{color:'white',fontSize:16}}>四川川二娃</Text>
-                           <Text style={{color:'white',fontSize:14,marginTop:5}}>川菜,中国菜</Text>
+                           <Text style={{color:'white',fontSize:16,backgroundColor:'rgba(1,1,1,0)'}}>四川川二娃</Text>
+                           <Text style={{color:'white',fontSize:14,marginTop:5,backgroundColor:'rgba(1,1,1,0)'}}>川菜,中国菜</Text>
                            <View style={{flexDirection:'row',alignItems:'center',marginTop:5}}>
                                  <Image source={require('../imgs/store/merchants/ic_merchants_comment.png')}
                                         style={{width:14,height:14}}
                                         />
-                                 <Text style={{color:'#eee',fontSize:13,marginLeft:5}}>59条评论</Text>
+                                 <Text style={{color:'#eee',fontSize:13,marginLeft:5,backgroundColor:'rgba(1,1,1,0)'}}>59条评论</Text>
                            </View>
                            <View style={{flexDirection:'row',marginTop:5,alignItems:'center'}}>
                                  <Image source={require('../imgs/store/merchants/ic_merchants_time.png')}
                                         style={{width:14,height:14}}
                                         />
-                                 <Text style={{color:'#eee',fontSize:13,marginLeft:5}}>10:00am-12:00pm</Text>
+                                 <Text style={{color:'#eee',fontSize:13,marginLeft:5,backgroundColor:'rgba(1,1,1,0)'}}>10:00am-12:00pm</Text>
                            </View>
                            <View style={{flexDirection:'row',marginTop:5,alignItems:'center'}}>
                                  <Image source={require('../imgs/store/merchants/ic_merchants_peisong.png')}
                                         style={{width:14,height:14}}
                                         />
-                                 <Text style={{color:'#eee',fontSize:13,marginLeft:5}}>5km之内免费</Text>
+                                 <Text style={{color:'#eee',fontSize:13,marginLeft:5,backgroundColor:'rgba(1,1,1,0)'}}>5km之内免费</Text>
                            </View>
                      </View>
                 </View>
                 <View style={{flex:1,justifyContent:'flex-end'}}>
-                      <Text style={{color:'#fff',marginBottom:5,marginLeft:15,marginRight:15}}>公告信息:全场满200,八折畅享美食</Text>
+                      <Text style={{color:'#fff',marginBottom:5,marginLeft:15,marginRight:15,backgroundColor:'rgba(1,1,1,0)'}}>公告信息:全场满200,八折畅享美食</Text>
                 </View>
             </Image>
         </View>
